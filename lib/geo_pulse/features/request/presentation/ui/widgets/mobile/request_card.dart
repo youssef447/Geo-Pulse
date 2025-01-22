@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:tracking_module/tracking_module/core/extensions/extensions.dart';
+import 'package:geo_pulse/geo_pulse/core/extensions/extensions.dart';
 import '../../../../../../core/constants/enums.dart';
 
 import '../../../../../../core/constants/strings.dart';

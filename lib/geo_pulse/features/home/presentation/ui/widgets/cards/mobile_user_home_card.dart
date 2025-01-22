@@ -6,7 +6,7 @@ import '../../../../../../core/constants/app_assets.dart';
 import '../../../../../../core/helpers/spacing_helper.dart';
 import '../../../../../../core/theme/app_colors.dart';
 import '../../../../../../core/theme/app_text_styles.dart';
-import 'package:tracking_module/tracking_module/features/users/models/user_model.dart';
+import 'package:geo_pulse/geo_pulse/features/users/models/user_model.dart';
 import '../message_container.dart';
 
 ///Representation: This is the mobile view of the user home card.

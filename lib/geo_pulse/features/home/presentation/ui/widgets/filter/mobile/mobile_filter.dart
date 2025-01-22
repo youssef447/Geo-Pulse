@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:tracking_module/tracking_module/core/constants/enums.dart';
+import 'package:geo_pulse/geo_pulse/core/constants/enums.dart';
 import '../../../../../../../core/extensions/extensions.dart';
 
 import '../../../../../../../core/animations/horizontal_animation.dart';

@@ -8,7 +8,7 @@ import '../../../../../../../core/helpers/spacing_helper.dart';
 import '../../../../../../../core/theme/app_colors.dart';
 import '../../../../../../../core/theme/app_text_styles.dart';
 import '../../../../../../../core/widgets/buttons/app_default_button.dart';
-import 'package:tracking_module/tracking_module/features/users/models/user_model.dart';
+import 'package:geo_pulse/geo_pulse/features/users/models/user_model.dart';
 
 import '../../../../controller/controller/location_controller.dart';
 

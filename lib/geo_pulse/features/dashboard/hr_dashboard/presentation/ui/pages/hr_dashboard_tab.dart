@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tracking_module/tracking_module/features/dashboard/my_dashboard/presentation/ui/page/dashboard_tab.dart';
+import 'package:geo_pulse/geo_pulse/features/dashboard/my_dashboard/presentation/ui/page/dashboard_tab.dart';
 import '../../../../../../core/helpers/spacing_helper.dart';
 import '../../../../../../core/widgets/no_data_gif.dart';
 

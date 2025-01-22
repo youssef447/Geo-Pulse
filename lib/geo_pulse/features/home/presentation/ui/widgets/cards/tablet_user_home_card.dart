@@ -9,7 +9,7 @@ import '../../../../../../core/theme/app_colors.dart';
 import '../../../../../../core/theme/app_text_styles.dart';
 import '../../../../../../core/widgets/buttons/app_text_button.dart';
 import '../../../../../../core/widgets/responsive/orientation_layout.dart';
-import 'package:tracking_module/tracking_module/features/users/models/user_model.dart';
+import 'package:geo_pulse/geo_pulse/features/users/models/user_model.dart';
 import '../message_container.dart';
 
 /// Date: 2/10/2024

@@ -1,6 +1,6 @@
 {
-    "name": "tracking_module",
-    "short_name": "tracking_module",
+    "name": "geo_pulse",
+    "short_name": "geo_pulse",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

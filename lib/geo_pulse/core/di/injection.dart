@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
-import 'package:tracking_module/tracking_module/features/home/data/data_source/checkIn_remote_data_source.dart';
-import 'package:tracking_module/tracking_module/features/home/data/repository/checkIn_repo_impl.dart';
-import 'package:tracking_module/tracking_module/features/home/presentation/controller/controller/check_in_controller.dart';
+import 'package:geo_pulse/geo_pulse/features/home/data/data_source/checkIn_remote_data_source.dart';
+import 'package:geo_pulse/geo_pulse/features/home/data/repository/checkIn_repo_impl.dart';
+import 'package:geo_pulse/geo_pulse/features/home/presentation/controller/controller/check_in_controller.dart';
 
 import '../../features/approvals/data/data_source/approval_remote_data_source.dart';
 import '../../features/approvals/data/repository/approval_repo_impl.dart';

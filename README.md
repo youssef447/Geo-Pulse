@@ -1,4 +1,4 @@
-# tracking_module
+# geo_pulse
 
 A new Flutter project.
 

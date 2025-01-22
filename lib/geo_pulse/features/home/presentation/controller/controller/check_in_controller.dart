@@ -7,8 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:tracking_module/tracking_module/core/extensions/extensions.dart';
-import 'package:tracking_module/tracking_module/core/helpers/toast_helper.dart';
+import 'package:geo_pulse/geo_pulse/core/extensions/extensions.dart';
+import 'package:geo_pulse/geo_pulse/core/helpers/toast_helper.dart';
 
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';

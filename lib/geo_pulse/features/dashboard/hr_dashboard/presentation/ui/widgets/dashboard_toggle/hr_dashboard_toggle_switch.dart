@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:tracking_module/tracking_module/features/home/presentation/controller/controller/tracking_home_controller.dart';
+import 'package:geo_pulse/geo_pulse/features/home/presentation/controller/controller/tracking_home_controller.dart';
 import '../../../../../../../core/extensions/extensions.dart';
 
 import '../../../../../../../core/constants/strings.dart';

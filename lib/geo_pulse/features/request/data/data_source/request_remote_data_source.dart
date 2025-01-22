@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
-import 'package:tracking_module/tracking_module/core/constants/collection_constants.dart';
-import 'package:tracking_module/tracking_module/core/constants/strings.dart';
-import 'package:tracking_module/tracking_module/features/users/logic/add_employee_controller.dart';
+import 'package:geo_pulse/geo_pulse/core/constants/collection_constants.dart';
+import 'package:geo_pulse/geo_pulse/core/constants/strings.dart';
+import 'package:geo_pulse/geo_pulse/features/users/logic/add_employee_controller.dart';
 
 import '../models/request_model.dart';
 

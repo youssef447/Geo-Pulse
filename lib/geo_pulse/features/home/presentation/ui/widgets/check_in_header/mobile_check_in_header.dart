@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:tracking_module/tracking_module/features/users/logic/add_employee_controller.dart';
+import 'package:geo_pulse/geo_pulse/features/users/logic/add_employee_controller.dart';
 
 import '../../../../../../core/helpers/date_time_helper.dart';
 import '../../../../../../core/helpers/get_dialog_helper.dart';

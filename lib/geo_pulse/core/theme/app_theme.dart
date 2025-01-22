@@ -3,9 +3,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:tracking_module/tracking_module/core/constants/app_assets.dart';
-import 'package:tracking_module/tracking_module/core/helpers/get_dialog_helper.dart';
-import 'package:tracking_module/tracking_module/core/widgets/dialog/default_dialog.dart';
+import 'package:geo_pulse/geo_pulse/core/constants/app_assets.dart';
+import 'package:geo_pulse/geo_pulse/core/helpers/get_dialog_helper.dart';
+import 'package:geo_pulse/geo_pulse/core/widgets/dialog/default_dialog.dart';
 import '../helpers/getx_cache_helper.dart';
 import 'app_colors.dart';
 import 'app_text_styles.dart';

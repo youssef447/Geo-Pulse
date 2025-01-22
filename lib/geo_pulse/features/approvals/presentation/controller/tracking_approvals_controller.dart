@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:tracking_module/tracking_module/features/request/domain/request_repo.dart';
+import 'package:geo_pulse/geo_pulse/features/request/domain/request_repo.dart';
 import '../../../../core/constants/app_assets.dart';
 import '../../../../core/constants/enums.dart';
 

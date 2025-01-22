@@ -3,7 +3,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:get/get.dart';
-import 'package:tracking_module/tracking_module/features/users/models/user_model.dart';
+import 'package:geo_pulse/geo_pulse/features/users/models/user_model.dart';
 
 class UserController extends GetxController {
   FirebaseFirestore db = FirebaseFirestore.instance;

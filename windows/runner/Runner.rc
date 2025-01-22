@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "tracking_module" "\0"
+            VALUE "FileDescription", "geo_pulse" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "tracking_module" "\0"
+            VALUE "InternalName", "geo_pulse" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2024 com.example. All rights reserved." "\0"
-            VALUE "OriginalFilename", "tracking_module.exe" "\0"
-            VALUE "ProductName", "tracking_module" "\0"
+            VALUE "OriginalFilename", "geo_pulse.exe" "\0"
+            VALUE "ProductName", "geo_pulse" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

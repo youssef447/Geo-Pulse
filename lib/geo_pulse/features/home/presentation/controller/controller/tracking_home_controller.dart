@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tracking_module/tracking_module/features/users/models/user_model.dart';
+import 'package:geo_pulse/geo_pulse/features/users/models/user_model.dart';
 import '../../../../../core/extensions/extensions.dart';
 
 import '../../../../../core/routes/app_routes.dart';

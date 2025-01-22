@@ -3,12 +3,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tracking_module/tracking_module/core/constants/strings.dart';
-import 'package:tracking_module/tracking_module/core/helpers/date_time_helper.dart';
-import 'package:tracking_module/tracking_module/features/attendance/data/models/attendance_data_model.dart';
-import 'package:tracking_module/tracking_module/features/dashboard/my_dashboard/data/models/chart_data.dart';
-import 'package:tracking_module/tracking_module/features/request/data/models/request_model.dart';
-import 'package:tracking_module/tracking_module/features/users/logic/add_employee_controller.dart';
+import 'package:geo_pulse/geo_pulse/core/constants/strings.dart';
+import 'package:geo_pulse/geo_pulse/core/helpers/date_time_helper.dart';
+import 'package:geo_pulse/geo_pulse/features/attendance/data/models/attendance_data_model.dart';
+import 'package:geo_pulse/geo_pulse/features/dashboard/my_dashboard/data/models/chart_data.dart';
+import 'package:geo_pulse/geo_pulse/features/request/data/models/request_model.dart';
+import 'package:geo_pulse/geo_pulse/features/users/logic/add_employee_controller.dart';
 
 import '../../../../../core/constants/enums.dart';
 import '../../../../../core/theme/app_colors.dart';

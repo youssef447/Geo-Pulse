@@ -1,6 +1,6 @@
 // ignore_for_file: prefer_null_aware_operators
 
-import 'package:tracking_module/tracking_module/features/request_type/data/models/request_type_model.dart';
+import 'package:geo_pulse/geo_pulse/features/request_type/data/models/request_type_model.dart';
 
 import '../../../../core/constants/enums.dart';
 import 'doc_model.dart';

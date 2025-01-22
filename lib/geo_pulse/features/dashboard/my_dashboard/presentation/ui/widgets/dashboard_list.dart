@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:tracking_module/tracking_module/core/animations/scale_animation.dart';
+import 'package:geo_pulse/geo_pulse/core/animations/scale_animation.dart';
 import '../../../data/enums/dashboard_category.dart';
 
 import '../../controller/tracking_dashboard_controller.dart';
