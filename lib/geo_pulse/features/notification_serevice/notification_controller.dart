@@ -229,8 +229,7 @@ class AppNotificationController extends GetxController {
           db.collection('/Notifications');
       var serverKeyAuthorization = await getAccessToken();
 
-      const String urlEndPoint =
-          "https://fcm.googleapis.com/v1/projects//* knowticed-v2-scheme *//messages:send";
+      const String urlEndPoint = "";
 
       Dio dio = Dio();
       dio.options.headers['Content-Type'] = 'application/json';

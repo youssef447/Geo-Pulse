@@ -53,39 +53,6 @@ abstract class DateTimeHelper {
     return minutes;
   }
 
-  static String getMonthName(int month, {bool arabic = false}) {
-    final months = arabic
-        ? [
-            'يناير',
-            'فبراير',
-            'مارس',
-            'أبريل',
-            'مايو',
-            'يونيو',
-            'يوليو',
-            'أغسطس',
-            'سبتمبر',
-            'أكتوبر',
-            'نوفمبر',
-            'ديسمبر'
-          ]
-        : [
-            'Jan',
-            'Feb',
-            'Mar',
-            'Apr',
-            'May',
-            'Jun',
-            'Jul',
-            'Aug',
-            'Sep',
-            'Oct',
-            'Nov',
-            'Dec'
-          ];
-    return months[month - 1];
-  }
-
   static String formatDuration(Duration duration) {
     final months = duration.inDays ~/ 30;
     if (months >= 1) {
@@ -145,29 +112,22 @@ abstract class DateTimeHelper {
     'Nov': 'نوفمبر',
     'Dec': 'ديسمبر',
   };
-  static Map<String, String> weeksMap = {
-    ' Week 1': 'الأسبوع الاول',
-    ' Week 2': 'الأسبوع الثاني',
-    ' Week 3': 'الأسبوع الثالث',
-    ' Week 4': 'الأسبوع الرابع',
-    ' Week 5': 'الأسبوع الخامس',
+  static Map<int, String> monthNames = {
+    1: 'Jan',
+    2: 'Feb',
+    3: 'Mar',
+    4: 'Apr',
+    5: 'May',
+    6: 'Jun',
+    7: 'Jul',
+    8: 'Aug',
+    9: 'Sep',
+    10: 'Oct',
+    11: 'Nov',
+    12: 'Dec',
   };
+
   static String? getMonthNameFromDateTime(DateTime dateTime) {
-    // Map month number to its corresponding name
-    Map<int, String> monthNames = {
-      1: 'Jan',
-      2: 'Feb',
-      3: 'Mar',
-      4: 'Apr',
-      5: 'May',
-      6: 'Jun',
-      7: 'Jul',
-      8: 'Aug',
-      9: 'Sep',
-      10: 'Oct',
-      11: 'Nov',
-      12: 'Dec',
-    };
     return monthNames[dateTime.month];
   }
 
@@ -185,17 +145,4 @@ abstract class DateTimeHelper {
     'Nov',
     'Dec',
   ];
-  static List<String> sortMonthsFromCurrentMonth() {
-    // List of months
-
-    // Get current month
-    DateTime now = DateTime.now();
-    int currentMonthIndex =
-        now.month - 1; // months are 1-indexed, so subtract 1
-
-    // Sort months from current month to the end of the year
-    List<String> sortedMonths = months.sublist(0, currentMonthIndex + 1);
-
-    return sortedMonths;
-  }
 }

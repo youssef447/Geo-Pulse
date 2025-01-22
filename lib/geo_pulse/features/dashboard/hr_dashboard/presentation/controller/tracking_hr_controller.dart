@@ -267,216 +267,207 @@ class TrackingHRController extends GetxController {
 
   List<ChartData> weeklyChart(
       List<AttendanceDataModel> attendanceModel, bool ifMinutes) {
-    int currentDay = DateTime.now().day;
-    int currentWeek = currentDay > 28
-        ? 5
-        : currentDay > 21
-            ? 4
-            : currentDay > 14
-                ? 3
-                : currentDay > 7
-                    ? 2
-                    : 1;
-    List<String> sortMonths = DateTimeHelper.sortMonthsFromCurrentMonth();
+    List<String> lastCurrentMonths = [
+      DateTimeHelper.monthNames[
+          DateTime.now().month == 1 ? 12 : DateTime.now().month - 1]!,
+      DateTimeHelper.monthNames[DateTime.now().month]!
+    ];
     List<ChartData> historyBarChartData = [
       // First week of the last month
       ChartData(
-          xAxisLabel: '${sortMonths[11]} Week 1',
+          xAxisLabel: '${lastCurrentMonths[0]} Week 1',
           xAxisLabelArabic:
-              '${DateTimeHelper.monthsMap[sortMonths[11]]} الاسبوع الاول',
+              '${DateTimeHelper.monthsMap[lastCurrentMonths[0]]} الاسبوع الاول',
           yAxisLabel: ifMinutes
               ? getLateHistoryMinutes(attendanceModel
                   .where((element) =>
                       DateTimeHelper.getMonthNameFromDateTime(element.date) ==
-                          sortMonths[11] &&
+                          lastCurrentMonths[0] &&
                       element.date.day <= 7)
                   .toList())
               : attendanceModel
                   .where((element) =>
                       DateTimeHelper.getMonthNameFromDateTime(element.date) ==
-                          sortMonths[11] &&
+                          lastCurrentMonths[0] &&
                       element.date.day <= 7)
                   .length),
       // Second week of the last month
       ChartData(
-          xAxisLabel: '${sortMonths[11]} Week 2',
+          xAxisLabel: '${lastCurrentMonths[0]} Week 2',
           xAxisLabelArabic:
-              '${DateTimeHelper.monthsMap[sortMonths[11]]} الاسبوع الثاني',
+              '${DateTimeHelper.monthsMap[lastCurrentMonths[0]]} الاسبوع الثاني',
           yAxisLabel: ifMinutes
               ? getLateHistoryMinutes(attendanceModel
                   .where((element) =>
                       DateTimeHelper.getMonthNameFromDateTime(element.date) ==
-                          sortMonths[11] &&
+                          lastCurrentMonths[0] &&
                       element.date.day <= 14 &&
                       element.date.day >= 8)
                   .toList())
               : attendanceModel
                   .where((element) =>
                       DateTimeHelper.getMonthNameFromDateTime(element.date) ==
-                          sortMonths[11] &&
+                          lastCurrentMonths[0] &&
                       element.date.day <= 14 &&
                       element.date.day >= 8)
                   .length),
       // Third week of the last month
       ChartData(
-          xAxisLabel: '${sortMonths[11]} Week 3',
+          xAxisLabel: '${lastCurrentMonths[0]} Week 3',
           xAxisLabelArabic:
-              '${DateTimeHelper.monthsMap[sortMonths[11]]} الاسبوع الثالث',
+              '${DateTimeHelper.monthsMap[lastCurrentMonths[0]]} الاسبوع الثالث',
           yAxisLabel: ifMinutes
               ? getLateHistoryMinutes(attendanceModel
                   .where((element) =>
                       DateTimeHelper.getMonthNameFromDateTime(element.date) ==
-                          sortMonths[11] &&
+                          lastCurrentMonths[0] &&
                       element.date.day <= 21 &&
                       element.date.day >= 15)
                   .toList())
               : attendanceModel
                   .where((element) =>
                       DateTimeHelper.getMonthNameFromDateTime(element.date) ==
-                          sortMonths[11] &&
+                          lastCurrentMonths[0] &&
                       element.date.day <= 21 &&
                       element.date.day >= 15)
                   .length),
       // Fourth week of the last month
       ChartData(
-          xAxisLabel: '${sortMonths[11]} Week 4',
+          xAxisLabel: '${lastCurrentMonths[0]} Week 4',
           xAxisLabelArabic:
-              '${DateTimeHelper.monthsMap[sortMonths[11]]} الاسبوع الرابع',
+              '${DateTimeHelper.monthsMap[lastCurrentMonths[0]]} الاسبوع الرابع',
           yAxisLabel: ifMinutes
               ? getLateHistoryMinutes(attendanceModel
                   .where((element) =>
                       DateTimeHelper.getMonthNameFromDateTime(element.date) ==
-                          sortMonths[11] &&
+                          lastCurrentMonths[0] &&
                       element.date.day <= 28 &&
                       element.date.day >= 22)
                   .toList())
               : attendanceModel
                   .where((element) =>
                       DateTimeHelper.getMonthNameFromDateTime(element.date) ==
-                          sortMonths[11] &&
+                          lastCurrentMonths[0] &&
                       element.date.day <= 28 &&
                       element.date.day >= 22)
                   .length),
       // fifth week of the current month
       ChartData(
-          xAxisLabel: '${sortMonths[11]} Week 5',
+          xAxisLabel: '${lastCurrentMonths[0]} Week 5',
           xAxisLabelArabic:
-              '${DateTimeHelper.monthsMap[sortMonths[0]]} الاسبوع الخامس',
+              '${DateTimeHelper.monthsMap[lastCurrentMonths[0]]} الاسبوع الخامس',
           yAxisLabel: ifMinutes
               ? getLateHistoryMinutes(attendanceModel
                   .where((element) =>
                       DateTimeHelper.getMonthNameFromDateTime(element.date) ==
-                          sortMonths[11] &&
+                          lastCurrentMonths[0] &&
                       element.date.day >= 29)
                   .toList())
               : attendanceModel
                   .where((element) =>
                       DateTimeHelper.getMonthNameFromDateTime(element.date) ==
-                          sortMonths[11] &&
+                          lastCurrentMonths[0] &&
                       element.date.day >= 29)
                   .length),
       // First week of the current month
       ChartData(
-          xAxisLabel: '${sortMonths[0]} Week 1',
+          xAxisLabel: '${lastCurrentMonths[1]} Week 1',
           xAxisLabelArabic:
-              '${DateTimeHelper.monthsMap[sortMonths[0]]} الاسبوع الاول',
+              '${DateTimeHelper.monthsMap[lastCurrentMonths[0]]} الاسبوع الاول',
           yAxisLabel: ifMinutes
               ? getLateHistoryMinutes(attendanceModel
                   .where((element) =>
                       DateTimeHelper.getMonthNameFromDateTime(element.date) ==
-                          sortMonths[0] &&
+                          lastCurrentMonths[1] &&
                       element.date.day <= 7)
                   .toList())
               : attendanceModel
                   .where((element) =>
                       DateTimeHelper.getMonthNameFromDateTime(element.date) ==
-                          sortMonths[0] &&
+                          lastCurrentMonths[1] &&
                       element.date.day <= 7)
                   .length),
       // Second week of the current month
       ChartData(
-          xAxisLabel: '${sortMonths[0]} Week 2',
+          xAxisLabel: '${lastCurrentMonths[1]} Week 2',
           xAxisLabelArabic:
-              '${DateTimeHelper.monthsMap[sortMonths[0]]} الاسبوع الثاني',
+              '${DateTimeHelper.monthsMap[lastCurrentMonths[1]]} الاسبوع الثاني',
           yAxisLabel: ifMinutes
               ? getLateHistoryMinutes(attendanceModel
                   .where((element) =>
                       DateTimeHelper.getMonthNameFromDateTime(element.date) ==
-                          sortMonths[0] &&
+                          lastCurrentMonths[1] &&
                       element.date.day <= 14 &&
                       element.date.day >= 8)
                   .toList())
               : attendanceModel
                   .where((element) =>
                       DateTimeHelper.getMonthNameFromDateTime(element.date) ==
-                          sortMonths[0] &&
+                          lastCurrentMonths[1] &&
                       element.date.day <= 14 &&
                       element.date.day >= 8)
                   .length),
       // Third week of the current month
       ChartData(
-          xAxisLabel: '${sortMonths[0]} Week 3',
+          xAxisLabel: '${lastCurrentMonths[1]} Week 3',
           xAxisLabelArabic:
-              '${DateTimeHelper.monthsMap[sortMonths[0]]} الاسبوع الثالث',
+              '${DateTimeHelper.monthsMap[lastCurrentMonths[1]]} الاسبوع الثالث',
           yAxisLabel: ifMinutes
               ? getLateHistoryMinutes(attendanceModel
                   .where((element) =>
                       DateTimeHelper.getMonthNameFromDateTime(element.date) ==
-                          sortMonths[0] &&
+                          lastCurrentMonths[1] &&
                       element.date.day <= 21 &&
                       element.date.day >= 15)
                   .toList())
               : attendanceModel
                   .where((element) =>
                       DateTimeHelper.getMonthNameFromDateTime(element.date) ==
-                          sortMonths[0] &&
+                          lastCurrentMonths[1] &&
                       element.date.day <= 21 &&
                       element.date.day >= 15)
                   .length),
       // Fourth week of the current month
       ChartData(
-          xAxisLabel: '${sortMonths[0]} Week 4',
+          xAxisLabel: '${lastCurrentMonths[1]} Week 4',
           xAxisLabelArabic:
-              '${DateTimeHelper.monthsMap[sortMonths[0]]} الاسبوع الرابع',
+              '${DateTimeHelper.monthsMap[lastCurrentMonths[1]]} الاسبوع الرابع',
           yAxisLabel: ifMinutes
               ? getLateHistoryMinutes(attendanceModel
                   .where((element) =>
                       DateTimeHelper.getMonthNameFromDateTime(element.date) ==
-                          sortMonths[0] &&
+                          lastCurrentMonths[1] &&
                       element.date.day <= 28 &&
                       element.date.day >= 22)
                   .toList())
               : attendanceModel
                   .where((element) =>
                       DateTimeHelper.getMonthNameFromDateTime(element.date) ==
-                          sortMonths[0] &&
+                          lastCurrentMonths[1] &&
                       element.date.day <= 28 &&
                       element.date.day >= 22)
                   .length),
       // Fifth week of the current month
       ChartData(
-          xAxisLabel: '${sortMonths[0]} Week 5',
+          xAxisLabel: '${lastCurrentMonths[1]} Week 5',
           xAxisLabelArabic:
-              '${DateTimeHelper.monthsMap[sortMonths[0]]} الاسبوع الخامس',
+              '${DateTimeHelper.monthsMap[lastCurrentMonths[1]]} الاسبوع الخامس',
           yAxisLabel: ifMinutes
               ? getLateHistoryMinutes(attendanceModel
                   .where((element) =>
                       DateTimeHelper.getMonthNameFromDateTime(element.date) ==
-                          sortMonths[0] &&
+                          lastCurrentMonths[1] &&
                       element.date.day >= 29)
                   .toList())
               : attendanceModel
                   .where((element) =>
                       DateTimeHelper.getMonthNameFromDateTime(element.date) ==
-                          sortMonths[0] &&
+                          lastCurrentMonths[1] &&
                       element.date.day >= 29)
                   .length),
     ];
-    List<ChartData> lastSixWeeks = [];
-    for (int i = 6; i > 0; i--) {
-      lastSixWeeks.add(historyBarChartData[currentWeek + i - 2]);
-    }
-    return lastSixWeeks.reversed.toList();
+
+    return historyBarChartData.toList();
   }
 
   /// Calculates the total or extreme late minutes from a list of attendance data.
@@ -687,75 +678,79 @@ class TrackingHRController extends GetxController {
 
   /// Generates weekly chart data for the number of  requests.
   List<ChartData> requestWeeklyChart() {
-    List<String> sortMonths = DateTimeHelper.sortMonthsFromCurrentMonth();
+    List<String> lastCurrentMonths = [
+      DateTimeHelper.monthNames[DateTime.now().month - 1]!,
+      DateTimeHelper.monthNames[DateTime.now().month]!
+    ];
+
     List<ChartData> requestsHistoryBarChartData = [
       ChartData(
-          xAxisLabel: '${sortMonths[11]} Week 1',
+          xAxisLabel: '${lastCurrentMonths[0]} Week 1',
           xAxisLabelArabic:
-              '${DateTimeHelper.monthsMap[sortMonths[11]]} الاسبوع الاول',
+              '${DateTimeHelper.monthsMap[lastCurrentMonths[0]]} الاسبوع الاول',
           yAxisLabel: allRequests
               .where((element) =>
                   DateTimeHelper.getMonthNameFromDateTime(
                           element.requestDate) ==
-                      sortMonths[11] &&
+                      lastCurrentMonths[0] &&
                   element.requestDate.day <= 7)
               .length),
       ChartData(
-          xAxisLabel: '${sortMonths[11]} Week 2',
+          xAxisLabel: '${lastCurrentMonths[0]} Week 2',
           xAxisLabelArabic:
-              '${DateTimeHelper.monthsMap[sortMonths[11]]} الاسبوع الثاني',
+              '${DateTimeHelper.monthsMap[lastCurrentMonths[0]]} الاسبوع الثاني',
           yAxisLabel: allRequests
               .where((element) =>
                   DateTimeHelper.getMonthNameFromDateTime(
                           element.requestDate) ==
-                      sortMonths[11] &&
+                      lastCurrentMonths[0] &&
                   element.requestDate.day <= 14 &&
                   element.requestDate.day >= 8)
               .length),
       ChartData(
-          xAxisLabel: '${sortMonths[11]} Week 3',
+          xAxisLabel: '${lastCurrentMonths[0]} Week 3',
           xAxisLabelArabic:
-              '${DateTimeHelper.monthsMap[sortMonths[11]]} الاسبوع الثالث',
+              '${DateTimeHelper.monthsMap[lastCurrentMonths[0]]} الاسبوع الثالث',
           yAxisLabel: allRequests
               .where((element) =>
                   DateTimeHelper.getMonthNameFromDateTime(
                           element.requestDate) ==
-                      sortMonths[11] &&
+                      lastCurrentMonths[0] &&
                   element.requestDate.day <= 21 &&
                   element.requestDate.day >= 15)
               .length),
       ChartData(
-          xAxisLabel: '${sortMonths[11]} Week 4',
+          xAxisLabel: '${lastCurrentMonths[0]} Week 4',
           xAxisLabelArabic:
-              '${DateTimeHelper.monthsMap[sortMonths[11]]} الاسبوع الرابع',
+              '${DateTimeHelper.monthsMap[lastCurrentMonths[0]]} الاسبوع الرابع',
           yAxisLabel: allRequests
               .where((element) =>
                   DateTimeHelper.getMonthNameFromDateTime(
                           element.requestDate) ==
-                      sortMonths[11] &&
+                      lastCurrentMonths[0] &&
                   element.requestDate.day <= 31 &&
                   element.requestDate.day >= 22)
               .length),
       ChartData(
-          xAxisLabel: '${sortMonths[0]} Week 1',
+          xAxisLabel: '${lastCurrentMonths[1]} Week 1',
           xAxisLabelArabic:
-              '${DateTimeHelper.monthsMap[sortMonths[0]]} الاسبوع الاول',
+              '${DateTimeHelper.monthsMap[lastCurrentMonths[1]]} الاسبوع الاول',
           yAxisLabel: allRequests
               .where((element) =>
                   DateTimeHelper.getMonthNameFromDateTime(
                           element.requestDate) ==
-                      sortMonths[0] &&
+                      lastCurrentMonths[1] &&
                   element.requestDate.day <= 7)
               .length),
       ChartData(
-          xAxisLabel: '${sortMonths[0]} Week 2',
+          xAxisLabel: '${lastCurrentMonths[1]} Week 2',
           xAxisLabelArabic:
-              '${DateTimeHelper.monthsMap[sortMonths[0]]} الاسبوع الثاني',
+              '${DateTimeHelper.monthsMap[lastCurrentMonths[1]]} الاسبوع الثاني',
           yAxisLabel: allRequests
               .where((element) =>
                   DateTimeHelper.getMonthNameFromDateTime(
                           element.requestDate) ==
-                      sortMonths[0] &&
+                      lastCurrentMonths[1] &&
                   element.requestDate.day <= 14 &&
                   element.requestDate.day >= 8)
               .length),

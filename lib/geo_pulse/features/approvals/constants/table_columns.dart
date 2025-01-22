@@ -1,4 +1,4 @@
-/// Represents The Constant Table Headers for Approvals Tab
+// Represents The Constant Table Headers for Approvals Tab
 
 abstract class ApprovalsColumnsConstants {
   static const List<String> approvalsHeaders = [
