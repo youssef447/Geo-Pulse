@@ -87,19 +87,16 @@ class AppNotificationController extends GetxController {
   Future<String?> getAccessToken() async {
     final serviceAccountJson = {
       "type": "service_account",
-      "project_id": "knowticed-v2-scheme",
-      "private_key_id": "4a18f36d82625b3ded56c78a85068c63e3061b5a",
-      "private_key":
-          "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDn4Smuy0H40uaC\nKfPqf7yEAaft7nHyxZgaeSyXxQRY4DEpGxdxettZQh9nmhqpVSi/KcKLzVCXxuaq\n+rdy34ejCkaemyzGj5NSD+bE3v3kSfvWoiQ6nqMTuuN6KJPoxgCMhJsP323VXHoV\nqXE1OA8iwzQ2CKoUc4KM25hrHONxrJ+uVwHcGEscwZRe9z3UXo4KSixl1oQwshoL\nIu1PQoP+xTm08NpsbTtr/pXPyv7GPbPZwvXjBq8eS4uTOamOYYe+LNYPmnjr7EL6\nvihoMsCKyKSQRp+DVglNDipOsD4Rp5UIoKdGUN0TeKesmdg4AhKZzd0Nz/9U2jpR\nzfFMEy0RAgMBAAECggEAAtQo3YSGRAJSpJDddGVlh9i7Uzg+9J67ecszo5BYOrtV\nbjJx6UT96wtW9b0YCSvMSPS59lmlW4ymILzZQxH+Bhuoe+PZunxi6DPgdVNhFole\nhKJKvdpUk/eKMeHP2B2eQRiXCa0Imns71ArSojsSWDK4btZRONml5JEDPX9HOQpD\nn6kpYJRFXazVG0VjxD7oRNNpw3C8AP6R+pr6zKwFyE5WFL1WtGcSashkN6TV/RUV\nmbofrEgs96Y1SGi9tyuQDMww9MtkomsBlN0PcHH/6YdZ00VxBe4mxxE8fOmlGyyB\n+t4co3Qi88hkgSAdZWK+XMkHuY0EKvB60qEV9HHNZwKBgQD8chRnx9onHjzlpq1c\nSbNGE7y+BPM3aRnfD/WjgJgIiK7d2QdnEiv+EwDorXWLBCxSEMK0oZb+dg2O6Xbq\n3DTehF7TRTUnO6bBUBzvPMmlpvlvdTAsbFU8wcrPt+ZiVVHsu86kzvq73gd6c5BO\nxsMjjzrYjqiSySnTZKNM76cJywKBgQDrJPRM/mvyYWWIbD4FhVSAkFmwtPDtIG0s\nCR5t8Pv84IQQRHujyR2YVLrBIqMO69SlP2c7M7dVxsPaND1XdbpHcwsWfMulUj9s\nQT0QV54kzpeKFHAr4uooiA6AziP9GDIQ4qUFAbwkwb1K1eWq5zHi3Uzj+G7CNqDy\n0aidJZX5EwKBgQDdB3FQUI50M6h0FpSxOiJKGBvob+MXv+EUCiAzcPMsfahFu7Ec\nkK+N/MuN7dn9xsCbdetURiszTt+eIlGpXva3YUS5TF42pKbjmSZMXXfcny7EZOGx\n84RJ9w+BAW4o6LUbRnCuoj6sYMFBeI+AOc0/hDesxnNYWeNSIEpOoYIqMwKBgEa1\nPw0j+FvTM8/ZFLFeTXG3dnDvh/8WIB38w/y1WWDKNowZu8AdituyptHK05N6EOB7\n91PTEk8lzOEBkmyJRzGTA4OIlUgqOk4YM/+FCVXyFZl82dooitcTSqEq26GQtAVl\n0c92nRfEdmJZfY1tpg+dEjD/FHcsLCu4JebTVYynAoGAJ/nXaFnQiLjWxJHdOMPP\n5X169jsnMTDwIl6t2jurnLt9nomP2uhyTYdUKMMZ4lSh5YflxuKXl9/h4IQ4HgOq\nFPHxW+fwfE43xA7m6pj18uCjrT3/owzZdpauACPJ7HuSSjOcRgsaXbvd1sSyRyNE\nET/QqNPNcmkhjo/y11UF2r0=\n-----END PRIVATE KEY-----\n",
-      "client_email":
-          "firebase-adminsdk-2szdm@knowticed-v2-scheme.iam.gserviceaccount.com",
-      "client_id": "108712132861240366762",
+      "project_id": "",
+      "private_key_id": "",
+      "private_key": "",
+      "client_email": "",
+      "client_id": "",
       "auth_uri": "https://accounts.google.com/o/oauth2/auth",
       "token_uri": "https://oauth2.googleapis.com/token",
       "auth_provider_x509_cert_url":
           "https://www.googleapis.com/oauth2/v1/certs",
-      "client_x509_cert_url":
-          "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-2szdm%40knowticed-v2-scheme.iam.gserviceaccount.com",
+      "client_x509_cert_url": "",
       "universe_domain": "googleapis.com"
     };
 
