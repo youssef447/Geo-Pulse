@@ -1,6 +1,7 @@
 # geo_pulse
 
-Target Platforms (Android - iOS - Windows)
+Target Platforms ( Android - iOS - Windows )
+Responsive ( Mobile - Tablet - Windows )
 
 ## Demo
 
