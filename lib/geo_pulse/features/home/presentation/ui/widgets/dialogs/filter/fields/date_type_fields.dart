@@ -11,8 +11,6 @@ import '../../../../../../../../core/widgets/fields/date_picker_field.dart';
 import '../../../../../../../request_type/presentation/controller/request_types_controller.dart';
 import '../../../../../controller/controller/tracking_home_controller.dart';
 
-/// Date: 4/10/2024
-/// By: Youssef Ashraf
 /// Representation: This is the date and type fields widget.
 class DateTypeFields extends GetView<TrackingHomeController> {
   const DateTypeFields({

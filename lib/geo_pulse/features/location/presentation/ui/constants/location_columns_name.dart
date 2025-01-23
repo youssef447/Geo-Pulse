@@ -1,8 +1,8 @@
-///by : mohamed ashraf
+///by :
 ///last update: 8/12/2024
 ///objective :  table columns name of location in tablet view
 
-abstract class LocationColumnsName{
+abstract class LocationColumnsName {
   static const List<String> locationColumnsName = [
     'Name',
     'Address',
@@ -11,5 +11,4 @@ abstract class LocationColumnsName{
     // 'Accuracy',
     'Geofencing',
   ];
-
 }

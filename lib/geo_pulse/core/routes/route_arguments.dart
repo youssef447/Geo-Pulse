@@ -1,4 +1,4 @@
-//Mohamed Ashraf
+//
 ///Represents The Route Passed Argument Variables when navigating between pages
 abstract class RouteArguments {
   static const String requestModelIndex = 'requestModelIndex';
@@ -9,5 +9,4 @@ abstract class RouteArguments {
   static const String isGeofencing = 'isGeofencing';
   static const String locationName = 'locationName';
   static const String user = 'user';
-
 }

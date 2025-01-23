@@ -8,8 +8,6 @@ import '../../../../../../../../core/theme/app_text_styles.dart';
 import '../../../../../../../../core/widgets/dropdown/app_dropdown.dart';
 import '../../../../../controller/controller/tracking_home_controller.dart';
 
-/// Date: 4/10/2024
-/// By: Youssef Ashraf
 /// Representation: This file is responsible for providing the request status dropdown in the filter dialog.
 class ApporvalsStatusDropdown extends StatelessWidget {
   const ApporvalsStatusDropdown({super.key});

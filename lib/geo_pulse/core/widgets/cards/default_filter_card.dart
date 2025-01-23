@@ -4,9 +4,6 @@ import '../../extensions/extensions.dart';
 
 import '../../theme/app_colors.dart';
 
-/// Date: 8/8/2024
-/// By: Youssef Ashraf
-/// Last update: 8/8/2024
 /// Objectives: This file is responsible for providing a default filter card widget that is used in the app.
 class DefaultChipCard extends StatelessWidget {
   final Widget icon;

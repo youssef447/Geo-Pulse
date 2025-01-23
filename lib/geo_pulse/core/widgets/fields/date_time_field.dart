@@ -8,7 +8,7 @@ import '../../theme/app_text_styles.dart';
 import 'date_picker_field.dart';
 import 'time_picker_field.dart';
 
-/// Mohamed Ashraf
+///
 /// Row of start Date , end time fields
 class DateImeField extends StatelessWidget {
   final TextEditingController dateController;

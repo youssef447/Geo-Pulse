@@ -10,8 +10,6 @@ import '../../../../../../../../core/widgets/dropdown/app_dropdown.dart';
 import '../../../../../../../../core/widgets/fields/date_picker_field.dart';
 import '../../../../../controller/controller/tracking_home_controller.dart';
 
-/// Date: 4/10/2024
-/// By: Youssef Ashraf
 /// Representation: This is the date and status fields widget.
 class DateStatusFields extends GetView<TrackingHomeController> {
   const DateStatusFields({

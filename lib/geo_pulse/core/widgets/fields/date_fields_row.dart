@@ -6,7 +6,6 @@ import '../../helpers/spacing_helper.dart';
 import '../../theme/app_text_styles.dart';
 import 'date_picker_field.dart';
 
-///Youssef Ashraf
 ///Row of start date , end date fields
 class DateFieldsRow extends StatelessWidget {
   final TextEditingController startDateController;

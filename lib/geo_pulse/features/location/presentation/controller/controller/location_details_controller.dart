@@ -1,4 +1,3 @@
-//Youssef Ashraf
 // location details controller for a specific location model
 
 import 'package:flutter/material.dart';

@@ -15,7 +15,6 @@ import '../../../../../../../../core/widgets/dropdown/default_dropdown.dart';
 import '../../../../../../../../core/widgets/fields/default_form_field.dart';
 import '../../../../../controller/controller/location_controller.dart';
 
-//Youssef Ashraf
 //tabbar body of location settings in tablet
 class TabletLocSettings extends StatefulWidget {
   final int index;

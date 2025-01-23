@@ -13,7 +13,6 @@ import '../../widgets/location details/tabs/tablet/tablet_individual_list.dart';
 import '../../widgets/location details/tabs/tablet/tablet_loc_description.dart';
 import '../../widgets/location details/tabs/tablet/tablet_loc_settings.dart';
 
-//Youssef Ashraf
 ///location details Page in Tablet View
 class TabletLocationDetails extends GetView<LocationController> {
   final int index;

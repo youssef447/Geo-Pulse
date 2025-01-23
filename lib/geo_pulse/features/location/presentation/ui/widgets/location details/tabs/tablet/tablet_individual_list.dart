@@ -22,7 +22,6 @@ import '../../../../../../../../core/widgets/cards/chip_card.dart';
 import '../../../../../controller/controller/location_controller.dart';
 import '../../../../../controller/controller/location_details_controller.dart';
 
-///Youssef Ashraf
 ///tabbar body of Individual List in tablet
 class TabletIndividualList extends StatelessWidget {
   const TabletIndividualList({

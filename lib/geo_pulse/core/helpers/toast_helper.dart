@@ -9,7 +9,6 @@ import '../theme/app_colors.dart';
 import '../theme/app_text_styles.dart';
 import '../theme/app_theme.dart';
 
-//Youssef Ashraf
 ///Helper Toast that helps configure what to use based on platform
 abstract class FlutterToastHelper {
   static showToast({

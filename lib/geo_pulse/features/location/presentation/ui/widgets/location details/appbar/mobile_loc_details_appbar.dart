@@ -17,8 +17,6 @@ import '../../../../../../../core/theme/app_text_styles.dart';
 import '../../../../../../../core/widgets/dialog/default_dialog.dart';
 import '../../../../controller/controller/location_controller.dart';
 
-///By: Youssef Ashraf
-/// Date: 1/10/2024
 /// Description: This is the mobile location details appbar widget.
 class MobileLocDetailsAppbar extends GetView<LocationController> {
   final int index;

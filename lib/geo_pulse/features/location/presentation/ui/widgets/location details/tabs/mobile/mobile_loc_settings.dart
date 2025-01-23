@@ -1,6 +1,3 @@
-//Youssef Ashraf Mohamed Ashaf
-//tabbar body of location settings in mobile
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';

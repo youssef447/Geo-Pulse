@@ -11,8 +11,6 @@ import '../../../../../../../../core/widgets/fields/default_form_field.dart';
 import '../../../../../controller/controller/tracking_home_controller.dart';
 import 'apporvals_status_dropdown.dart';
 
-/// Date: 4/10/2024
-/// By: Youssef Ashraf
 /// Representation: This is the Time and Period fields widget.
 ///Shared across all tabs filter to select total time for a specific period
 class TimePeriodFields extends GetView<TrackingHomeController> {

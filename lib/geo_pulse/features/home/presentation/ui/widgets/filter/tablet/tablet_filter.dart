@@ -30,9 +30,6 @@ import '../../dialogs/filter/attendance_filter_dialog.dart';
 import '../../dialogs/filter/req_filter.dart';
 import '../../../../../../../core/widgets/cards/chip_card.dart';
 
-/// Date: 5/8/2024
-/// By: Youssef Ashraf
-/// Last update: 6/8/2024
 /// Objectives: This file is responsible for providing the search filter widget which has search field and filter buttons.
 
 class TabletFilter extends GetView<TrackingHomeController> {

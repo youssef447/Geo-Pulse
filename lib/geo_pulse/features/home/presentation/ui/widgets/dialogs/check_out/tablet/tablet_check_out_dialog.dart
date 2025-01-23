@@ -15,8 +15,6 @@ import '../../../../../../../location/presentation/controller/controller/locatio
 import '../../../../../controller/controller/check_in_controller.dart';
 import '../../../../../controller/controller/tracking_home_controller.dart';
 
-/// Date: 29/9/2024
-/// By: Nada Mohammed
 /// Representation: This is the Tablet view of the check out dialog.
 class TabletCheckOutDialog extends GetView<TrackingHomeController> {
   const TabletCheckOutDialog({super.key});

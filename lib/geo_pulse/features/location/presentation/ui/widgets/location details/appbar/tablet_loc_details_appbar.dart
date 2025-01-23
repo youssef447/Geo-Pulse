@@ -18,8 +18,6 @@ import '../../../../../../../core/widgets/buttons/app_default_button.dart';
 import '../../../../../../../core/widgets/dialog/default_dialog.dart';
 import '../../../../controller/controller/location_controller.dart';
 
-///Youssef Ashraf
-///Date: 29/9/2024
 ///This file is responsible for providing the tablet location details appbar widget.
 
 class TabletLocDetailsAppbar extends GetView<LocationController> {

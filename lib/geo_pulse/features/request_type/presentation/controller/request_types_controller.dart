@@ -16,8 +16,6 @@ import '../../constants/table_columns.dart';
 import '../../data/models/request_type_model.dart';
 import '../../domain/request_type_repo.dart';
 
-/// Date: 2/10/2024
-/// By: Nada Mohammed , Youssef Ashraf
 ///This file is responsible for handling the requests logic
 class RequestTypeController extends GetxController {
   final RequestTypeRepo requestTypeRepo;

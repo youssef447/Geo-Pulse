@@ -1,4 +1,3 @@
-//Youssef Ashraf
 //Individuals card for mobile view
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

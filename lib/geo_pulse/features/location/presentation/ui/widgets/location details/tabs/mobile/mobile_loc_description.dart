@@ -9,8 +9,6 @@ import '../../../../../../../../core/theme/app_colors.dart';
 import '../../../../../../../../core/theme/app_text_styles.dart';
 import '../../../../../controller/controller/location_controller.dart';
 
-/// Date: 20/10/2024
-/// By: Youssef Ashraf
 ///tabbar body of location description in mobile
 class MobileLocDescription extends GetView<LocationController> {
   final int index;

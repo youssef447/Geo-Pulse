@@ -9,7 +9,6 @@ import '../../helpers/haptic_feedback_helper.dart';
 import '../../helpers/spacing_helper.dart';
 import '../../theme/app_colors.dart';
 
-// mohamed && youssef ashraf work
 class AppDefaultButton extends StatelessWidget {
   final Function()? onPressed;
   final String text;

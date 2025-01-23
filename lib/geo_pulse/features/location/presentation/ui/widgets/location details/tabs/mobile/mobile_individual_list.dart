@@ -11,9 +11,6 @@ import '../../../../../controller/controller/location_controller.dart';
 import '../../../../../controller/controller/location_details_controller.dart';
 import '../../cards/individual_card.dart';
 
-/// Date: 20/10/2024
-/// By: Youssef Ashraf
-///tabbar body of Individual List in mobile
 class MobileIndividualList extends StatelessWidget {
   const MobileIndividualList({
     super.key,

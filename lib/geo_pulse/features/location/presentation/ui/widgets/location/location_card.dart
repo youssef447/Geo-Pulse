@@ -11,7 +11,7 @@ import '../../../../../../core/theme/app_colors.dart';
 import '../../../../../../core/theme/app_text_styles.dart';
 import '../../../controller/controller/location_controller.dart';
 
-/// by :  Mohamed Ashraf
+/// by :
 
 /// A widget displaying detailed information about a location, including its name, address, coordinates, Google Maps link, and geofencing perimeter.
 

@@ -12,8 +12,6 @@ import '../../../../../../core/widgets/responsive/orientation_layout.dart';
 import 'package:geo_pulse/geo_pulse/features/users/models/user_model.dart';
 import '../message_container.dart';
 
-/// Date: 2/10/2024
-/// By: Nada Mohammed
 /// Represents the tablet view of the user home card.
 class TabletUserHomeCard extends StatelessWidget {
   final UserModel user;

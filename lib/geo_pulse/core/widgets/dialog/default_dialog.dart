@@ -13,7 +13,6 @@ import '../../theme/app_font_weights.dart';
 import '../../theme/app_text_styles.dart';
 import '../buttons/app_default_button.dart';
 
-//Youssef Ashraf
 ///Default Result Dialog after specific Action has been performed
 class DefaultDialog extends StatelessWidget {
   final dynamic Function()? onConfirm;

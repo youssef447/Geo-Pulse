@@ -1,5 +1,3 @@
-///Youssef Ashraf
-/// Date :8/12/2024
 /// Represents The Constant Table Headers for Request Type Tab
 
 abstract class RequestTypeColumnsConstants {
