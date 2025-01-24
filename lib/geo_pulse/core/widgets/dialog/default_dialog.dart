@@ -54,7 +54,7 @@ class DefaultDialog extends StatelessWidget {
         vertical: 8.h,
         horizontal: 8.w,
       ),
-      width: width,
+      width: width ?? Get.width * 0.8,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [

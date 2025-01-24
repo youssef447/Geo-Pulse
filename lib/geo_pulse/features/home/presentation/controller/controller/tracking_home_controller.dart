@@ -184,9 +184,7 @@ class TrackingHomeController extends GetxController
     Get.find<CheckInController>().currentLocationAddress.addListener(() {
       Get.find<CheckInController>().update([AppConstanst.checkInDialog]);
     });
-    Get.find<CheckInController>().companyLocationAddress.addListener(() {
-      Get.find<CheckInController>().update([AppConstanst.checkInDialog]);
-    });
+
     setHomeTabs();
     setTabViews();
     tabController = TabController(

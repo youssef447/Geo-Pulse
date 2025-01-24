@@ -9,8 +9,8 @@ import '../../features/location/presentation/ui/pages/mobile/mobile_data_locatio
 import '../../features/location/presentation/ui/pages/mobile/mobile_location_details.dart';
 import '../../features/location/presentation/ui/pages/tablet/tablet_data_location.dart';
 import '../../features/location/presentation/ui/pages/tablet/tablet_location_details.dart';
-import '../../features/location/presentation/ui/widgets/google_map/edit_location_google_map.dart';
-import '../../features/location/presentation/ui/widgets/google_map/location_google_map.dart';
+import '../../features/location/presentation/ui/pages/common/edit_location_google_map.dart';
+import '../../features/location/presentation/ui/pages/common/location_google_map.dart';
 import '../../features/request_type/presentation/ui/pages/mobile/mobile_request_type_details_page.dart';
 import '../../features/request_type/presentation/ui/pages/mobile/mobile_request_type_page.dart';
 import '../../features/request_type/presentation/ui/pages/tablet/tablet_request_type_details_page.dart';

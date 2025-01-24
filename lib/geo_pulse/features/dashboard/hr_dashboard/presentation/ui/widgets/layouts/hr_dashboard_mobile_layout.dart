@@ -8,13 +8,13 @@ import '../../../../../../../core/constants/app_assets.dart';
 import '../../../../../../../core/helpers/spacing_helper.dart';
 
 import '../../../../../../../core/constants/strings.dart';
-import '../../../../../../approvals/presentation/controller/tracking_approvals_controller.dart';
+import '../../../../../../../core/widgets/loading/circle_progress.dart';
 import '../../../../../my_dashboard/presentation/ui/widgets/charts/dashboard_circular_chart.dart';
 import '../../../../../my_dashboard/presentation/ui/widgets/charts/dashboard_column_bar_chart.dart';
 import '../../../controller/tracking_hr_controller.dart';
 import '../filters/hr_dashboard_filters.dart';
 
-class HRDashboardMobileLayout extends GetView<TrackingHRController> {
+class HRDashboardMobileLayout extends StatelessWidget {
   const HRDashboardMobileLayout({super.key});
 
   @override
@@ -22,9 +22,15 @@ class HRDashboardMobileLayout extends GetView<TrackingHRController> {
     return UpDownAnimation(
       reverse: true,
       child: SingleChildScrollView(
-        child: GetBuilder<TrackingApprovalsController>(
+        child: GetBuilder<TrackingHRController>(
             id: AppConstanst.dashboard,
-            builder: (context) {
+            builder: (controller) {
+              if (controller.loading) {
+                return SizedBox(
+                  height: Get.height * 0.55,
+                  child: const CircleProgress(),
+                );
+              }
               return Column(
                 children: [
                   HRDashboardFilters(),

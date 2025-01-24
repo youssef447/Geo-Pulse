@@ -53,18 +53,25 @@ class RequestRemoteDataSource {
 
   Future<List<RequestModel>> getAllRequests([String? dep]) async {
     final List<RequestModel> res = [];
-    var respons =
-        await _firestore.collection(CollectionConstants.requests).get();
-    //for each mail
-    for (var doc in respons.docs) {
+
+    final users = await _firestore.collection(CollectionConstants.users).get();
+    for (var doc in users.docs) {
+      final email = doc.data()['email'];
+      var respons = await _firestore
+          .collection(CollectionConstants.requests)
+          .doc(email)
+          .get();
+      //for each mail
+
       final response =
-          await doc.reference.collection(AppConstanst.requests).get();
+          await respons.reference.collection(AppConstanst.requests).get();
       for (var doc2 in response.docs) {
         if (Get.find<UserController>()
-                .getLocaleEmployee(
-                    doc2.data()[RequestModel.fieldRequestedUserId])
-                .departmentid ==
-            dep) {
+                    .getLocaleEmployee(
+                        doc2.data()[RequestModel.fieldRequestedUserId])
+                    .departmentid ==
+                dep ||
+            dep == null) {
           res.add(RequestModel.fromMap(doc2.data()));
         }
       }

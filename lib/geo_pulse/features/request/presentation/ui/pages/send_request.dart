@@ -40,7 +40,7 @@ class SendRequest extends GetView<TrackingRequestsController> {
           borderRadius: BorderRadius.circular(8.r),
         ),
         constraints: BoxConstraints(
-          maxHeight: Get.height * 0.8,
+          maxHeight: Get.height * 0.9,
         ),
         child: SingleChildScrollView(
           child: GetBuilder<TrackingRequestsController>(

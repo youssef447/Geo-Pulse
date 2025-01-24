@@ -101,8 +101,7 @@ class CheckInDialog extends GetView<TrackingHomeController> {
                     text: 'Check In'.tr,
                     textStyle: AppTextStyles.font16ButtonMediumCairo,
                     backgroundColor:
-                        (controller.currentLocationAddress.text.isEmpty ||
-                                controller.companyLocationAddress.text.isEmpty)
+                        (controller.currentLocationAddress.text.isEmpty)
                             ? AppColors.whiteShadow
                             : AppColors.primary,
                     borderRadius: 4.r,

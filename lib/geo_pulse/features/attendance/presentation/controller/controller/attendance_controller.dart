@@ -74,47 +74,6 @@ class TrackingAttendanceController extends GetxController {
     });
   }
 
-// add attendence excuse
-  /// Adds an attendance record for the specified employee to the Firestore database.
-  ///
-  /// This function stores the attendance data in the Firestore collection
-  /// 'Attendances', appending it to the 'EmployeeAttendances' subcollection
-  /// using the formatted date as the document ID.
-  ///
-  /// After successfully adding the record, it updates the local
-  /// attendance data models and triggers UI updates for the attendance
-  /// list, attendance table, and home page.
-  ///
-  /// [model] The attendance data model to be added.
-  /// [email] The email of the employee to add the attendance record for.
-  Future<void> addAttendanceUsingEmail(
-      AttendanceDataModel model, String email) async {
-    await attendenceRepo.addAttendance(model, email);
-  }
-
-  /// Returns a list of all dates between [startDate] and [endDate] inclusive.
-  ///
-  /// The function iterates over the range of dates from [startDate] to
-  /// [endDate] (inclusive) and adds each date to the list.
-  ///
-  /// [startDate] The starting date of the range.
-  /// [endDate] The ending date of the range.
-  ///
-  /// Returns a list of [DateTime] objects.
-  List<DateTime> getDatesBetween(DateTime startDate, DateTime endDate) {
-    List<DateTime> dates = [];
-    DateTime currentDate = startDate;
-
-    // Iterate over the range of dates and add each date to the list
-    while (currentDate.isBefore(endDate) ||
-        currentDate.isAtSameMomentAs(endDate)) {
-      dates.add(currentDate);
-      currentDate = currentDate.add(const Duration(days: 1));
-    }
-
-    return dates;
-  }
-
   // approval requests filter month
   filterAttendanceByMonth(DateTime date) {
     attendanceDataModel = allAttendanceDataModel

@@ -41,7 +41,7 @@ class DefaultDataTable extends StatelessWidget {
                       : AppColors.card,
                 ),
               ),
-              columnSpacing: 60.w, //columnSpacing,
+              columnSpacing: noScroll ?? false ? 20.w : 60.w, //columnSpacing,
               headingRowColor:
                   WidgetStatePropertyAll(AppColors.secondaryPrimary),
               dataRowMinHeight: 46.h,

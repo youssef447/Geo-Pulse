@@ -56,7 +56,7 @@ class DashboardColumnBarChart extends StatelessWidget {
             child: Padding(
                 padding: EdgeInsets.all(8.w),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Row(
                       children: [
@@ -148,40 +148,35 @@ class DashboardColumnBarChart extends StatelessWidget {
                           GetBuilder<TrackingHRController>(
                               id: AppConstanst.hrDashboardFilters,
                               builder: (controller) {
-                                return SizedBox(
-                                  width: isTablet ? null : 150.w,
-                                  child: buildDropDown(
-                                    context: context,
-                                    width: isTablet ? 150.w : null,
-                                    value: controller
-                                        .selectedTimeLateMinutesFilter,
-                                    textButton:
-                                        controller.lateMinutesFilterName,
-                                    onPressed: (value) {
-                                      controller
-                                          .setTimeLateMinutesFilter(value);
-                                    },
-                                    items: [
-                                      DropdownMenuItem(
-                                        alignment:
-                                            AlignmentDirectional.centerStart,
-                                        value: TimeFilter.week,
-                                        child: buildMenuItem('Week'.tr),
-                                      ),
-                                      DropdownMenuItem(
-                                        alignment:
-                                            AlignmentDirectional.centerStart,
-                                        value: TimeFilter.month,
-                                        child: buildMenuItem('Month'.tr),
-                                      ),
-                                      DropdownMenuItem(
-                                        alignment:
-                                            AlignmentDirectional.centerStart,
-                                        value: TimeFilter.year,
-                                        child: buildMenuItem('Year'.tr),
-                                      ),
-                                    ],
-                                  ),
+                                return buildDropDown(
+                                  context: context,
+                                  width: isTablet ? 150.w : null,
+                                  value:
+                                      controller.selectedTimeLateMinutesFilter,
+                                  textButton: controller.lateMinutesFilterName,
+                                  onPressed: (value) {
+                                    controller.setTimeLateMinutesFilter(value);
+                                  },
+                                  items: [
+                                    DropdownMenuItem(
+                                      alignment:
+                                          AlignmentDirectional.centerStart,
+                                      value: TimeFilter.week,
+                                      child: buildMenuItem('Week'.tr),
+                                    ),
+                                    DropdownMenuItem(
+                                      alignment:
+                                          AlignmentDirectional.centerStart,
+                                      value: TimeFilter.month,
+                                      child: buildMenuItem('Month'.tr),
+                                    ),
+                                    DropdownMenuItem(
+                                      alignment:
+                                          AlignmentDirectional.centerStart,
+                                      value: TimeFilter.year,
+                                      child: buildMenuItem('Year'.tr),
+                                    ),
+                                  ],
                                 );
                               })
                         else if (showFilterRequestDropDown)
@@ -226,7 +221,7 @@ class DashboardColumnBarChart extends StatelessWidget {
                       child: SizedBox(
                         width: data.length <= 4 && context.isTablett
                             ? Get.width
-                            : data.length * Get.width / 6,
+                            : data.length * Get.width / 5,
                         child: SfCartesianChart(
                           plotAreaBorderWidth: 0,
                           // isTransposed: true,
@@ -260,7 +255,7 @@ class DashboardColumnBarChart extends StatelessWidget {
                           series: <CartesianSeries<ChartData, String>>[
                             ColumnSeries<ChartData, String>(
                               width: 1,
-                              spacing: 0.8,
+                              spacing: context.isTablett ? 0.8 : 0.4,
                               borderRadius: BorderRadius.all(
                                 Radius.circular(15.r),
                               ),

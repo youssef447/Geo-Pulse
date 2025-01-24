@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -111,7 +113,12 @@ class TabletCheckInHeader extends GetView<TrackingHomeController> {
                           text: 'Check In'.tr,
                           width: 250.w,
                           onPressed: () async {
-                            await controller.getCurrentLocation(context);
+                            if (Platform.isAndroid || Platform.isIOS) {
+                              await controller.getCurrentLocation(context);
+                            } else {
+                              await controller
+                                  .getWindowsCurrentLocation(context);
+                            }
                           },
                         ),
                       ],

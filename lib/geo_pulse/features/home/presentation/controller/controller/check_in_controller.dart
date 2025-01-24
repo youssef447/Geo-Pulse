@@ -1,10 +1,11 @@
 import 'dart:async';
-import 'dart:io';
+
 import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:geo_pulse/geo_pulse/core/widgets/loading/loading.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geo_pulse/geo_pulse/core/extensions/extensions.dart';
@@ -48,9 +49,7 @@ class CheckInController extends GetxController
   late final GlobalKey<FormState> formKeyCurrentLocation =
       GlobalKey<FormState>();
 
-  // ****** Should get it from backend where is the current company location ******
-  late final companyLocationAddress =
-      TextEditingController(text: '12 Nasr City, Cairo, Egypt'.tr);
+  late final companyLocationAddrsess = TextEditingController();
 
   /// Checks if the current location is within the company location polygon
   /// using the even-odd rule algorithm.
@@ -67,7 +66,7 @@ class CheckInController extends GetxController
   /// polygon, false otherwise.
   bool checkIfValidLocation() {
     int intersections = 0;
-
+//should call assignedLoc in userController (emp.assignedLoc)
     List<LatLng> polygon =
         Get.find<LocationController>().locationModels[0].polygonPoints;
     LatLng point =
@@ -263,6 +262,63 @@ class CheckInController extends GetxController
   }
 
   Position? currentLocation;
+  getWindowsCurrentLocation(context) async {
+    try {
+      showLoadingIndicator();
+      bool isLocationServiceEnabled =
+          await Geolocator.isLocationServiceEnabled();
+      if (!isLocationServiceEnabled) {
+        FlutterToastHelper.showToast(
+          msg: 'Please enable location services!'.tr,
+          backgroundColor: AppColors.secondaryPrimary,
+        );
+        openAppSettings();
+        return;
+      }
+
+      final permission = await Permission.location.request();
+
+      if (permission.isGranted) {
+        currentLocation = await Geolocator.getCurrentPosition(
+          locationSettings: LocationSettings(accuracy: LocationAccuracy.high),
+        );
+
+        if (currentLocation != null) {
+          late String address;
+
+          address = await getWindowsAddress(
+            latLng.LatLng(
+              currentLocation!.latitude,
+              currentLocation!.longitude,
+            ),
+          );
+
+          currentLocationAddress.text = address;
+          hideLoadingIndicator();
+          Future.delayed(Duration.zero, () {
+            GetDialogHelper.generalDialog(
+              child: const CheckInDialog(),
+              context: context,
+            );
+          });
+        }
+      } else {
+        FlutterToastHelper.showToast(
+          msg: 'Please enable location to check in with your current location!'
+              .tr,
+          backgroundColor: AppColors.secondaryPrimary,
+        );
+      }
+    } catch (e) {
+      GetDialogHelper.generalDialog(
+        child: DefaultDialog(
+            lottieAsset: AppAssets.trash,
+            title: 'Error',
+            subTitle: e.toString()),
+        context: context,
+      );
+    }
+  }
 
   getCurrentLocation(context) async {
     bool isLocationServiceEnabled = await Geolocator.isLocationServiceEnabled();
@@ -285,21 +341,13 @@ class CheckInController extends GetxController
 
       if (currentLocation != null) {
         late String address;
-        if (Platform.isAndroid || Platform.isIOS) {
-          address = await getAddress(
-            latLng.LatLng(
-              currentLocation!.latitude,
-              currentLocation!.longitude,
-            ),
-          );
-        } else {
-          address = await getWindowsAddress(
-            latLng.LatLng(
-              currentLocation!.latitude,
-              currentLocation!.longitude,
-            ),
-          );
-        }
+
+        address = await getAddress(
+          latLng.LatLng(
+            currentLocation!.latitude,
+            currentLocation!.longitude,
+          ),
+        );
 
         currentLocationAddress.text = address;
 

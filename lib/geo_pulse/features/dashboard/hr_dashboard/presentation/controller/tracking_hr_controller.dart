@@ -679,7 +679,8 @@ class TrackingHRController extends GetxController {
   /// Generates weekly chart data for the number of  requests.
   List<ChartData> requestWeeklyChart() {
     List<String> lastCurrentMonths = [
-      DateTimeHelper.monthNames[DateTime.now().month - 1]!,
+      DateTimeHelper.monthNames[
+          DateTime.now().month == 1 ? 12 : DateTime.now().month - 1]!,
       DateTimeHelper.monthNames[DateTime.now().month]!
     ];
 
@@ -753,6 +754,32 @@ class TrackingHRController extends GetxController {
                       lastCurrentMonths[1] &&
                   element.requestDate.day <= 14 &&
                   element.requestDate.day >= 8)
+              .length),
+
+      ChartData(
+          xAxisLabel: '${lastCurrentMonths[1]} Week 3',
+          xAxisLabelArabic:
+              '${DateTimeHelper.monthsMap[lastCurrentMonths[1]]} الاسبوع الثالث',
+          yAxisLabel: allRequests
+              .where((element) =>
+                  DateTimeHelper.getMonthNameFromDateTime(
+                          element.requestDate) ==
+                      lastCurrentMonths[1] &&
+                  element.requestDate.day <= 21 &&
+                  element.requestDate.day >= 15)
+              .length),
+      // Fourth week of the last month
+      ChartData(
+          xAxisLabel: '${lastCurrentMonths[1]} Week 4',
+          xAxisLabelArabic:
+              '${DateTimeHelper.monthsMap[lastCurrentMonths[1]]} الاسبوع الرابع',
+          yAxisLabel: allRequests
+              .where((element) =>
+                  DateTimeHelper.getMonthNameFromDateTime(
+                          element.requestDate) ==
+                      lastCurrentMonths[1] &&
+                  element.requestDate.day <= 28 &&
+                  element.requestDate.day >= 22)
               .length),
     ];
     return requestsHistoryBarChartData;
