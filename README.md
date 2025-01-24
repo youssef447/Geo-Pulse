@@ -1,16 +1,15 @@
 # geo_pulse
 
-A new Flutter project.
+Target Platforms ( Android - iOS - Windows )
+Responsive ( Mobile - Tablet - Windows )
 
-## Getting Started
+## Demo
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+![mockuper](https://github.com/user-attachments/assets/54362702-bdc3-4c6c-8230-6c2eb57816d9)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+![Instagram App Screens Mockup](https://github.com/user-attachments/assets/ba046ff8-bd31-43d3-bd6b-f9ebee4e5a1a)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![Instagram App Screens Mockup2](https://github.com/user-attachments/assets/64888f28-79d3-4cdb-a078-cd1492d6512d)
+
+
