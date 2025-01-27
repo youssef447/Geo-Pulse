@@ -43,7 +43,6 @@ abstract class PushNotificationService {
     final bool granted = await requestPermission();
     if (granted) {
       String? firebaseMessagingToken = await _fcm.getToken();
-      debugPrint("Firebase messaging token: $firebaseMessagingToken");
     }
   }
 
