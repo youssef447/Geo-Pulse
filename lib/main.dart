@@ -3,10 +3,12 @@
 import 'dart:io';
 
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 //import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:geo_pulse/geo_pulse/features/notification_serevice/services/push_notification_service.dart';
 import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:toastification/toastification.dart';
@@ -18,7 +20,7 @@ import 'package:geo_pulse/geo_pulse/core/routes/app_routes.dart';
 import 'package:geo_pulse/geo_pulse/core/routes/get_pages.dart';
 import 'package:geo_pulse/geo_pulse/core/theme/app_theme.dart';
 //import 'package:geo_pulse/geo_pulse/features/notification_serevice/notification_controller.dart';
-import 'package:geo_pulse/geo_pulse/features/notification_serevice/notification_service.dart';
+import 'package:geo_pulse/geo_pulse/features/notification_serevice/services/local_notification_service.dart';
 import 'package:window_manager/window_manager.dart';
 
 import 'firebase_options.dart';
@@ -41,15 +43,13 @@ void main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   if (!Platform.isWindows && !Platform.isLinux && !Platform.isMacOS) {
-    await NotificationService.initialize();
-    /*  AppNotificationController appNotificationController =
-        Get.put(AppNotificationController());
-    await appNotificationController.getAccessToken();
-    await appNotificationController.initNotifications();
+    await LocalNotificationService.initialize();
+
+    await PushNotificationService.initNotifications();
     FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-      NotificationService.showNotification(message);
-    }); */
+      LocalNotificationService.showNotification(message);
+    });
   }
   _checkPermission();
   // Run the app

@@ -5,8 +5,10 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:geo_pulse/geo_pulse/features/notification_serevice/services/push_notification_service.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
+import '../../../../core/constants/notification_types.dart';
 import '../../../../core/extensions/extensions.dart';
 import '../../../../core/constants/enums.dart';
 
@@ -21,7 +23,6 @@ import '../../../../core/widgets/dialog/default_dialog.dart';
 import '../../../../core/widgets/loading/loading.dart';
 import '../../../users/logic/add_employee_controller.dart';
 import '../../../home/presentation/controller/controller/tracking_home_controller.dart';
-import '../../../notification_serevice/notification_controller.dart';
 import '../../../request_type/data/models/request_type_model.dart';
 import '../../../request_type/presentation/controller/request_types_controller.dart';
 import '../../constants/table_columns.dart';
@@ -87,8 +88,9 @@ class TrackingRequestsController extends GetxController {
       String empEnglishName =
           Get.find<UserController>().getEmployeeNameEnglishArabic(true);
 
-      Get.find<AppNotificationController>().sendNotification(
+      PushNotificationService.sendNotification(
         topic: 'request',
+        type: NotificationTypes.request.getName,
         title: "Reminder: Pending ${model.requestType.englishName} Request",
         arabicTitle:
             "تذكير: طلب ${model.requestType.arabicName} بانتظار الموافقة",
@@ -96,7 +98,6 @@ class TrackingRequestsController extends GetxController {
             "Please review the ${model.requestType.englishName} request from $empEnglishName that is still awaiting your approval.",
         arabicBody:
             "يرجى مراجعة طلب ${model.requestType.arabicName} من $empArabicName الذي لا يزال بانتظار موافقتك.",
-        type: AppConstanst.attendanceRequestType,
         attendanceRequestId: newModel.id,
       );
     });
@@ -206,15 +207,15 @@ class TrackingRequestsController extends GetxController {
             Get.find<UserController>().getEmployeeNameEnglishArabic(false);
         String empEnglishName =
             Get.find<UserController>().getEmployeeNameEnglishArabic(true);
-        Get.find<AppNotificationController>().sendNotification(
+        PushNotificationService.sendNotification(
           topic: 'request',
+          type: NotificationTypes.request.getName,
           title: "new ${selectedReqType?.englishName} request",
           arabicTitle: "طلب ${selectedReqType?.arabicName} جديد",
           body:
               "$empEnglishName has requested your approval for a ${selectedReqType?.englishName} request.",
           arabicBody:
               "لقد طلب $empArabicName موافقتك على طلب ${selectedReqType?.arabicName}.",
-          type: AppConstanst.attendanceRequestType,
           attendanceRequestId: requestId,
         );
         resetResources();

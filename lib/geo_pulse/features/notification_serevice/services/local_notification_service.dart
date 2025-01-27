@@ -4,9 +4,10 @@ import 'dart:math';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:geo_pulse/geo_pulse/core/theme/app_colors.dart';
 import 'package:get/get.dart';
 import 'package:firebase_core/firebase_core.dart';
-import '../../features/notification_serevice/notification_controller.dart';
+import '../models/notification_data.dart';
 
 /* final StreamController<String?> selectNotificationStream =
     StreamController<String?>.broadcast(); */
@@ -29,8 +30,6 @@ class ReceivedNotification {
 
 String? selectedNotificationPayload;
 
-const String navigationActionId = 'id_3';
-
 @pragma('vm:entry-point')
 void notificationTapBackground(NotificationResponse notificationResponse) {
   if (notificationResponse.input?.isNotEmpty ?? false) {
@@ -42,10 +41,10 @@ void notificationTapBackground(NotificationResponse notificationResponse) {
 @pragma('vm:entry-point')
 Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp();
-  NotificationService.showNotification(message);
+  LocalNotificationService.showNotification(message);
 }
 
-class NotificationService {
+abstract class LocalNotificationService {
   static FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();
 
@@ -82,7 +81,6 @@ class NotificationService {
     );
   }
 
-  /// ✨Shows a notification using the provided [RemoteMessage].⭐
   static Future<void> showNotification(RemoteMessage message) async {
     AndroidNotificationDetails androidPlatformChannelSpecifics =
         AndroidNotificationDetails(
@@ -90,6 +88,8 @@ class NotificationService {
       message.messageId ?? Random().nextInt(99999).toString(),
       importance: Importance.max,
       priority: Priority.high,
+      colorized: true,
+      color: AppColors.primary,
       showWhen: true,
     );
 
@@ -101,7 +101,7 @@ class NotificationService {
       sound: "default",
     );
 
-    NotificationDetails platformChannelSpecifics = NotificationDetails(
+    final NotificationDetails platformChannelSpecifics = NotificationDetails(
       android: androidPlatformChannelSpecifics,
       iOS: darwinNotificationDetails,
     );
@@ -110,10 +110,10 @@ class NotificationService {
       Random().nextInt(9999),
       Get.deviceLocale!.languageCode == "ar"
           ? message.data['Arabic_Title']
-          : message.data['English_Title'] + " from local",
+          : message.data['English_Title'],
       Get.deviceLocale!.languageCode == "ar"
           ? message.data['Arabic_Body']
-          : message.data['English_Body'] + " from local",
+          : message.data['English_Body'],
       platformChannelSpecifics,
       payload: jsonEncode(message.data),
     );

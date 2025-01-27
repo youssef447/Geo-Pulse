@@ -16,7 +16,6 @@ class AppConstanst {
   static const String home = "home";
 
   // Notification type constansts
-  static const String attendanceRequestType = "attendance_request";
 
   // Attendance constansts
   static const String employeeAttendances = "EmployeeAttendances";

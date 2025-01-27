@@ -1,11 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/widgets.dart';
+import 'package:geo_pulse/geo_pulse/features/notification_serevice/services/push_notification_service.dart';
 import 'package:get/get.dart';
 import 'package:geo_pulse/geo_pulse/features/request/domain/request_repo.dart';
 import '../../../../core/constants/app_assets.dart';
 import '../../../../core/constants/enums.dart';
 
-import '../../../../features/notification_serevice/notification_controller.dart';
+import '../../../../core/constants/notification_types.dart';
 import '../../../../features/request_type/data/models/request_type_model.dart';
 import '../../../../core/constants/strings.dart';
 import '../../../../core/helpers/get_dialog_helper.dart';
@@ -71,15 +72,15 @@ class TrackingApprovalsController extends GetxController {
           .firstWhere((element) =>
               element.id == approvalRequests[index].requestType.id);
 
-      Get.find<AppNotificationController>().sendNotification(
+      PushNotificationService.sendNotification(
         topic: approvalRequests[index].requestedUserId,
         title: "${requestTypes.englishName} request",
+        type: NotificationTypes.request.getName,
         arabicTitle: "طلب ${requestTypes.arabicName}",
         body:
             "Your ${requestTypes.englishName} request has been rejected by Human Resources.",
         arabicBody:
             "تم رفض طلب: ${requestTypes.arabicName} الخاص بك من قبل قسم الموارد البشرية.",
-        type: AppConstanst.attendanceRequestType,
         attendanceRequestId: approvalRequests[index].id,
       );
     });
@@ -103,15 +104,15 @@ class TrackingApprovalsController extends GetxController {
           .firstWhere((element) =>
               element.id == approvalRequests[index].requestType.id);
 
-      Get.find<AppNotificationController>().sendNotification(
+      PushNotificationService.sendNotification(
         topic: approvalRequests[index].requestedUserId,
         title: "${requestTypes.englishName} request",
+        type: NotificationTypes.request.getName,
         arabicTitle: "طلب ${requestTypes.arabicName}",
         body:
             "Your ${requestTypes.englishName} request has been approved by Human Resources.",
         arabicBody:
             "تمت الموافقة علي طلب: ${requestTypes.arabicName} الخاص بك من قبل قسم الموارد البشرية.",
-        type: AppConstanst.attendanceRequestType,
         attendanceRequestId: approvalRequests[index].id,
       );
       update([AppConstanst.approvals]);

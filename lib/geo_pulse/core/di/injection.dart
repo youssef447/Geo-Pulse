@@ -1,3 +1,4 @@
+import 'package:geo_pulse/geo_pulse/features/notifications/data/repo/notifications_repo_imp.dart';
 import 'package:get/get.dart';
 import 'package:geo_pulse/geo_pulse/features/home/data/data_source/checkIn_remote_data_source.dart';
 import 'package:geo_pulse/geo_pulse/features/home/data/repository/checkIn_repo_impl.dart';
@@ -11,6 +12,7 @@ import '../../features/attendance/data/repository/attendence_repo_impl.dart';
 import '../../features/attendance/presentation/controller/controller/attendance_controller.dart';
 import '../../features/dashboard/hr_dashboard/presentation/controller/tracking_hr_controller.dart';
 import '../../features/dashboard/my_dashboard/presentation/controller/tracking_dashboard_controller.dart';
+import '../../features/notifications/presentation/controller/notification_controller.dart';
 import '../../features/users/logic/add_department_controller.dart';
 import '../../features/users/logic/add_employee_controller.dart';
 import '../../features/home/presentation/controller/controller/tracking_home_controller.dart';
@@ -100,6 +102,8 @@ configurationDependencies() {
           ),
       fenix: true);
   Get.lazyPut(() => GeofencingController(), fenix: true);
-  // Get.lazyPut(() => AppNotificationController(), fenix: true);
+  Get.lazyPut(
+      () => AppNotificationController(notificationRepo: NotificationsRepoImp()),
+      fenix: true);
   Get.lazyPut(() => EditGeofencingController(), fenix: true);
 }

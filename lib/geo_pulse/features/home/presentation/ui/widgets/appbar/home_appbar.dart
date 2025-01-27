@@ -1,6 +1,6 @@
 part of '../../pages/home_page.dart';
 
-class HomeAppbar extends GetView<TrackingHomeController> {
+class HomeAppbar extends StatelessWidget {
   final bool hideLeading;
   const HomeAppbar({required this.hideLeading, super.key});
 
@@ -12,32 +12,54 @@ class HomeAppbar extends GetView<TrackingHomeController> {
       centerTitle: false,
       actionWidget: Row(
         children: [
-          AnimatedToggleSwitch<bool>.size(
-            current: controller.isArabic,
-            values: const [false, true],
-            iconOpacity: 1,
-            height: 26.h,
-            indicatorSize: Size.fromWidth(40.w),
-            customIconBuilder: (context, isArabic, global) => Text(
-              isArabic.value ? 'AR'.tr : 'ENG'.tr,
-              style: TextStyle(
-                fontSize: 12.sp,
-                color: global.active ? AppColors.icon : AppColors.primary,
+          GetBuilder<AppNotificationController>(
+              id: 'notification_icon',
+              builder: (controller) {
+                return SizedBox(
+                  width: 30.w,
+                  child: Badge.count(
+                    count: controller.unseenCount,
+                    offset: Offset.zero,
+                    backgroundColor: AppColors.primary,
+                    textColor: AppColors.icon,
+                    textStyle: AppTextStyles.font10RegularMonserrat,
+                    isLabelVisible:
+                        Get.find<AppNotificationController>().unseenCount != 0,
+                    child: SvgPicture.asset(
+                      AppAssets.bell,
+                    ),
+                  ),
+                );
+              }),
+          horizontalSpace(16),
+          GetBuilder<TrackingHomeController>(builder: (controller) {
+            return AnimatedToggleSwitch<bool>.size(
+              current: controller.isArabic,
+              values: const [false, true],
+              iconOpacity: 1,
+              height: 20.h,
+              indicatorSize: Size.fromWidth(40.w),
+              customIconBuilder: (context, isArabic, global) => Text(
+                isArabic.value ? 'AR'.tr : 'ENG'.tr,
+                style: TextStyle(
+                  fontSize: context.isTablett ? 10.sp : 8.sp,
+                  color: global.active ? AppColors.icon : AppColors.primary,
+                ),
               ),
-            ),
-            borderWidth: 1,
-            iconAnimationType: AnimationType.onSelected,
-            style: ToggleStyle(
-              backgroundColor: AppColors.background,
-              indicatorColor: AppColors.secondaryPrimary,
-              borderColor: AppColors.border,
-              borderRadius: BorderRadius.circular(10.r),
-            ),
-            onChanged: (value) {
-              controller.isArabic = value;
-              controller.toggleLanguage();
-            },
-          ),
+              borderWidth: 1,
+              iconAnimationType: AnimationType.onSelected,
+              style: ToggleStyle(
+                backgroundColor: AppColors.background,
+                indicatorColor: AppColors.secondaryPrimary,
+                borderColor: AppColors.border,
+                borderRadius: BorderRadius.circular(10.r),
+              ),
+              onChanged: (value) {
+                controller.isArabic = value;
+                controller.toggleLanguage();
+              },
+            );
+          }),
           horizontalSpace(6),
           AnimatedSwitcher(
             duration: const Duration(milliseconds: 650),

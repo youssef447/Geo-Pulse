@@ -3,20 +3,21 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../extensions/extensions.dart';
+import '../../extensions/extensions.dart';
 
-import '../constants/app_assets.dart';
-import '../helpers/haptic_feedback_helper.dart';
-import '../theme/app_colors.dart';
-import '../theme/app_text_styles.dart';
+import '../../constants/app_assets.dart';
+import '../../helpers/haptic_feedback_helper.dart';
+import '../../theme/app_colors.dart';
+import '../../theme/app_text_styles.dart';
 
 /// Objectives: This file is responsible for building a common custom app bar between several pages.
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final String? subtitle;
   final Widget? actionWidget;
+  final Widget? leadingWidget;
   final TextStyle? textStyle;
-  final Widget? leadingIcon;
+
   final bool? centerTitle;
   final bool? paddedLeading;
   final Widget? mainLeadingIcon;
@@ -28,7 +29,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.subtitle,
     this.textStyle,
     this.actionWidget,
-    this.leadingIcon,
+    this.leadingWidget,
     this.mainLeadingIcon,
     this.centerTitle,
     this.paddedLeading,
@@ -56,30 +57,31 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         ],
         leading: hideLeading ?? false
             ? null
-            : IconButton(
-                padding: EdgeInsets.zero,
-                iconSize: 12.sp,
-                onPressed: () {
-                  HapticFeedbackHelper.triggerHapticFeedback(
-                    vibration: VibrateType.mediumImpact,
-                    hapticFeedback: HapticFeedback.mediumImpact,
-                  );
-                  Navigator.of(context).pop();
-                },
-                icon: !context.isArabic
-                    ? SvgPicture.asset(
-                        AppAssets.arrowBack,
-                        color: AppColors.text,
-                        width: 24.w,
-                        height: 24.h,
-                      )
-                    : SvgPicture.asset(
-                        AppAssets.arrowForward,
-                        color: AppColors.text,
-                        width: 24.w,
-                        height: 24.h,
-                      ),
-              ),
+            : leadingWidget ??
+                IconButton(
+                  padding: EdgeInsets.zero,
+                  iconSize: 12.sp,
+                  onPressed: () {
+                    HapticFeedbackHelper.triggerHapticFeedback(
+                      vibration: VibrateType.mediumImpact,
+                      hapticFeedback: HapticFeedback.mediumImpact,
+                    );
+                    Navigator.of(context).pop();
+                  },
+                  icon: !context.isArabic
+                      ? SvgPicture.asset(
+                          AppAssets.arrowBack,
+                          color: AppColors.text,
+                          width: 24.w,
+                          height: 24.h,
+                        )
+                      : SvgPicture.asset(
+                          AppAssets.arrowForward,
+                          color: AppColors.text,
+                          width: 24.w,
+                          height: 24.h,
+                        ),
+                ),
         centerTitle: centerTitle ?? true,
         title: Column(
           children: [

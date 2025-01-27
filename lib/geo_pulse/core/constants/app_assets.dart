@@ -41,6 +41,7 @@ abstract class AppAssets {
   static const String edit = 'assets/vectors/edit.svg';
   static const String message = 'assets/vectors/message.svg';
   static const String marker = 'assets/vectors/location.svg';
+  static const String bell = 'assets/vectors/bell.svg';
 
   //****************************************************************************
 
