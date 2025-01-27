@@ -12,4 +12,4 @@ Responsive ( Mobile - Tablet - Windows )
 
 ![Instagram App Screens Mockup2](https://github.com/user-attachments/assets/64888f28-79d3-4cdb-a078-cd1492d6512d)
 
-
+![Instagram App Screens Mockup3](https://github.com/user-attachments/assets/f970595c-1f8f-49b7-9431-3e90feedb1ca)
