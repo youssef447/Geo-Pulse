@@ -215,7 +215,6 @@ abstract class PushNotificationService {
 
       client.close();
 
-      debugPrint("Access Token: ${credentials.accessToken.data}");
       return credentials.accessToken.data;
     } catch (e) {
       return null;
