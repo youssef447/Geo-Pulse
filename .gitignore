@@ -43,4 +43,6 @@ app.*.map.json
 /android/app/release
 
 #secret
+android/app/google-services.json
+firebase.json
 lib/geo_pulse/features/notification_serevice/secret.dart

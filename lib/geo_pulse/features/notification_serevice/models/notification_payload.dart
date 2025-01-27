@@ -2,12 +2,14 @@ import 'notification_content.dart';
 import 'notification_data.dart';
 
 class NotificationPayload {
-  final String fcmToken;
+  final String? fcmToken;
+  final String? topic;
   final NotificationContent notification;
   final NotificationData data;
 
   NotificationPayload({
-    required this.fcmToken,
+    this.fcmToken,
+    this.topic,
     required this.notification,
     required this.data,
   });
@@ -16,6 +18,7 @@ class NotificationPayload {
     return {
       "message": {
         "token": fcmToken,
+        "topic": topic,
         // "notification": notification.toMap(),
         // "android": {
         //   "notification": {

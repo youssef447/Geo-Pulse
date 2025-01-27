@@ -1,5 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:geo_pulse/geo_pulse/core/constants/enums.dart';
+import 'package:geo_pulse/geo_pulse/features/users/logic/add_employee_controller.dart';
+import 'package:get/get.dart';
 import 'package:get/utils.dart';
 import '../models/notification_content.dart';
 import '../models/notification_data.dart';
@@ -42,7 +45,11 @@ abstract class PushNotificationService {
   static Future<void> initNotifications() async {
     final bool granted = await requestPermission();
     if (granted) {
-      String? firebaseMessagingToken = await _fcm.getToken();
+//      String? firebaseMessagingToken = await _fcm.getToken();
+      await subscribeToTopic(Get.find<UserController>().employee!.email);
+      if (Get.find<UserController>().employee!.position == UserPosition.hr) {
+        await subscribeToTopic('requests');
+      }
     }
   }
 
@@ -59,8 +66,8 @@ abstract class PushNotificationService {
     try {
       var accessToken = await _getAccessToken();
 
-      const String urlEndPoint =
-          "https://_fcm.googleapis.com/v1/projects/time-tracker-672cc/messages:send";
+      final String urlEndPoint =
+          "https://_fcm.googleapis.com/v1/projects/$projectID/messages:send";
 
       Dio dio = Dio();
       dio.options.headers['Content-Type'] = 'application/json';
@@ -70,7 +77,8 @@ abstract class PushNotificationService {
           .post(
         urlEndPoint,
         data: NotificationPayload(
-          fcmToken: '/topics/${_formatTopic(topic)}',
+          // topic: '/topics/${_formatTopic(topic)}',
+          topic: topic,
           data: NotificationData(
             arabicTitle: arabicTitle,
             arabicBody: arabicBody,
@@ -128,8 +136,8 @@ abstract class PushNotificationService {
           _db.collection('/Notifications');
       var serverKeyAuthorization = await _getAccessToken();
 
-      const String urlEndPoint =
-          "https://_fcm.googleapis.com/v1/projects/time-tracker-672cc/messages:send";
+      final String urlEndPoint =
+          "https://_fcm.googleapis.com/v1/projects/$projectID/messages:send";
 
       Dio dio = Dio();
       dio.options.headers['Content-Type'] = 'application/json';
