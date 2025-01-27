@@ -199,12 +199,6 @@ abstract class PushNotificationService {
   /// The token is valid for one hour. After that, the method needs to be called
   /// again to obtain a new token.
   static Future<String?> _getAccessToken() async {
-    List<String> scopes = [
-      "https://www.googleapis.com/auth/userinfo.email",
-      "https://www.googleapis.com/auth/firebase.database",
-      "https://www.googleapis.com/auth/firebase.messaging"
-    ];
-
     try {
       //Obtains oauth2 credentials and returns an authenticated HTTP client To be used to obtain access credentials.
       http.Client client = await auth.clientViaServiceAccount(
