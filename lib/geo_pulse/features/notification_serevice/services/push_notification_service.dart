@@ -5,8 +5,8 @@ import 'package:geo_pulse/geo_pulse/features/users/logic/add_employee_controller
 import 'package:get/get.dart';
 import 'package:get/utils.dart';
 import '../models/notification_content.dart';
-import '../models/notification_data.dart';
 import '../models/notification_payload.dart';
+import '../models/notification_body.dart';
 import 'package:googleapis_auth/auth_io.dart' as auth;
 import 'package:http/http.dart' as http;
 import 'package:dio/dio.dart';
@@ -63,60 +63,58 @@ abstract class PushNotificationService {
       required String topic,
       String? attendanceRequestId,
       String? serviceRequestId}) async {
-    try {
-      var accessToken = await _getAccessToken();
+    var accessToken = await _getAccessToken();
 
-      final String urlEndPoint =
-          "https://_fcm.googleapis.com/v1/projects/$projectID/messages:send";
+    final String urlEndPoint =
+        "https://fcm.googleapis.com/v1/projects/$projectID/messages:send";
 
-      Dio dio = Dio();
-      dio.options.headers['Content-Type'] = 'application/json';
-      dio.options.headers['Authorization'] = 'Bearer $accessToken';
+    Dio dio = Dio();
+    dio.options.headers['Content-Type'] = 'application/json';
+    dio.options.headers['Authorization'] = 'Bearer $accessToken';
 
-      await dio
-          .post(
-        urlEndPoint,
+    await dio
+        .post(
+      urlEndPoint,
+      data: NotificationBody(
+        // topic: '/topics/${_formatTopic(topic)}',
+        topic: _formatTopic(topic),
         data: NotificationPayload(
-          // topic: '/topics/${_formatTopic(topic)}',
-          topic: topic,
-          data: NotificationData(
-            arabicTitle: arabicTitle,
-            arabicBody: arabicBody,
-            englishTitle: title.capitalize!,
-            englishBody: body.capitalize!,
-            attendanceRequestId: attendanceRequestId,
-            clickAction: "FLUTTER_NOTIFICATION_CLICK",
-          ),
-          notification: NotificationContent(
-            title: title.capitalize!,
-            body: body.capitalize!,
-          ),
-        ).toMap(),
-      )
-          .then(
-        (value) async {
-          NotificationModel notification = NotificationModel(
-              type: type,
-              title: title.capitalize!,
-              titleArabic: arabicTitle.toLowerCase(),
-              body: body.toLowerCase(),
-              bodyArabic: arabicBody.toLowerCase(),
-              seen: false,
-              timestamp: Timestamp.now(),
-              attendanceRequestId: attendanceRequestId);
-          await FirebaseFirestore.instance
-              .collection('Notifications')
-              .doc(topic)
-              .collection('Notifications')
-              .doc(
-                  DateTime.now().toString() + Random().nextInt(9999).toString())
-              .set(notification.toMap());
-          debugPrint("Notification sent successfully999");
-        },
-      );
-    } catch (e) {
+          arabicTitle: arabicTitle,
+          arabicBody: arabicBody,
+          englishTitle: title.capitalize!,
+          englishBody: body.capitalize!,
+          attendanceRequestId: attendanceRequestId,
+          clickAction: "FLUTTER_NOTIFICATION_CLICK",
+        ),
+        notification: NotificationContent(
+          title: title.capitalize!,
+          body: body.capitalize!,
+        ),
+      ).toMap(),
+    )
+        .then(
+      (value) async {
+        NotificationModel notification = NotificationModel(
+          type: type,
+          title: title.capitalize!,
+          titleArabic: arabicTitle.toLowerCase(),
+          body: body.toLowerCase(),
+          bodyArabic: arabicBody.toLowerCase(),
+          seen: false,
+          timestamp: Timestamp.now(),
+          attendanceRequestId: attendanceRequestId,
+        );
+        await FirebaseFirestore.instance
+            .collection('Notifications')
+            .doc(topic)
+            .collection('Notifications')
+            .doc(DateTime.now().toString() + Random().nextInt(9999).toString())
+            .set(notification.toMap());
+        debugPrint("Notification sent successfully999");
+      },
+    ).catchError((e) {
       debugPrint(e.toString());
-    }
+    });
   }
 
   /// Sends a notification to multiple topics.
@@ -137,7 +135,7 @@ abstract class PushNotificationService {
       var serverKeyAuthorization = await _getAccessToken();
 
       final String urlEndPoint =
-          "https://_fcm.googleapis.com/v1/projects/$projectID/messages:send";
+          "https://fcm.googleapis.com/v1/projects/$projectID/messages:send";
 
       Dio dio = Dio();
       dio.options.headers['Content-Type'] = 'application/json';
@@ -148,9 +146,9 @@ abstract class PushNotificationService {
         await dio
             .post(
           urlEndPoint,
-          data: NotificationPayload(
+          data: NotificationBody(
             fcmToken: '/topics/${_formatTopic(element)}',
-            data: NotificationData(
+            data: NotificationPayload(
               arabicTitle: arabicTitle,
               arabicBody: arabicBody,
               englishTitle: title.capitalize!,
@@ -233,7 +231,7 @@ abstract class PushNotificationService {
   /// and appends "topic" to the end. This is the format that
   /// Firebase Cloud Messaging expects for topics.
   static String _formatTopic(String topic) {
-    return "${topic.replaceAll("@", "_").replaceAll(":", "_").replaceAll(" ", "_").replaceAll("-", "_")}topic";
+    return "${topic.replaceAll("@", "_").replaceAll(":", "_").replaceAll(" ", "_").replaceAll("-", "_").replaceAll(".", "_")}topic";
   }
 
   /// Subscribe to a topic

@@ -13,22 +13,12 @@ import '../../widgets/cards/mobile_approvals_card.dart';
 
 /// Represents the approvals tab for the mobile approvals screen.
 
-class MobileApprovalsTab extends StatefulWidget {
+class MobileApprovalsTab extends StatelessWidget {
   const MobileApprovalsTab({super.key, required this.readOnly});
 
   final bool readOnly;
 
   @override
-  State<MobileApprovalsTab> createState() => _MobileApprovalsTabState();
-}
-
-class _MobileApprovalsTabState extends State<MobileApprovalsTab> {
-  @override
-  void initState() {
-    Get.find<TrackingApprovalsController>().getRequiredRequests();
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     return GetBuilder<TrackingApprovalsController>(
@@ -59,7 +49,7 @@ class _MobileApprovalsTabState extends State<MobileApprovalsTab> {
                   bottom: lastIndex ? 12.h : 0,
                 ),
                 child: MobileApprovalsCard(
-                  readOnly: widget.readOnly,
+                  readOnly: readOnly,
                   index: index,
                 ),
               );

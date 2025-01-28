@@ -1,3 +1,4 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:geo_pulse/geo_pulse/features/users/models/user_model.dart';
@@ -25,6 +26,8 @@ import '../../../../attendance/presentation/ui/page/mobile/attendance_mobile_pag
 import '../../../../attendance/presentation/ui/page/tablet/attendance_tablet_page.dart';
 import '../../../../dashboard/hr_dashboard/presentation/ui/pages/hr_dashboard_tab.dart';
 import '../../../../dashboard/my_dashboard/presentation/ui/page/dashboard_tab.dart';
+import '../../../../notification_serevice/services/local_notification_service.dart';
+import '../../../../notification_serevice/services/push_notification_service.dart';
 import '../../../../users/logic/add_employee_controller.dart';
 import '../../../../location/presentation/ui/pages/mobile/mobile_location_tab.dart';
 import '../../../../location/presentation/ui/pages/tablet/tablet_location_tab.dart';
@@ -179,6 +182,8 @@ class TrackingHomeController extends GetxController
   void onInit() async {
     super.onInit();
     await Get.find<UserController>().getNewEmployee('nlcylrxGqh3I7DqljB4r');
+    await PushNotificationService.initNotifications();
+    FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
     await Get.find<CheckInController>().loadState();
 
     Get.find<CheckInController>().currentLocationAddress.addListener(() {

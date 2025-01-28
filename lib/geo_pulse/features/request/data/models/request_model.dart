@@ -74,7 +74,8 @@ class RequestModel {
       startDate: DateTime.parse(json[fieldStartDate]),
       endDate: DateTime.parse(json[fieldEndDate]),
       requestDate: DateTime.parse(json[fieldRequestDate]),
-      requestStatus: json[fieldRequestStatus] == 'approved'
+      requestStatus: json[fieldRequestStatus] ==
+              RequestStatus.approved.getName.toLowerCase()
           ? RequestStatus.approved
           : json[fieldRequestStatus] ==
                   RequestStatus.pending.getName.toLowerCase()

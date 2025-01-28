@@ -40,7 +40,7 @@ class RequestRemoteDataSource {
           .collection(CollectionConstants.requests)
           .doc(email)
           .collection(CollectionConstants.requests)
-          .where('HR_Approval', isEqualTo: 'required')
+          .where('Request_Type.HR_Approval', isEqualTo: 'required')
           .get();
 
       for (var doc2 in snapshot.docs) {

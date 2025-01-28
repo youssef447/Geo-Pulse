@@ -1,42 +1,38 @@
-import 'notification_content.dart';
-import 'notification_data.dart';
-
 class NotificationPayload {
-  final String? fcmToken;
-  final String? topic;
-  final NotificationContent notification;
-  final NotificationData data;
+  final String arabicTitle, arabicBody, englishTitle, englishBody;
+  final String? attendanceRequestId;
+  final String clickAction;
 
   NotificationPayload({
-    this.fcmToken,
-    this.topic,
-    required this.notification,
-    required this.data,
+    this.attendanceRequestId,
+    this.clickAction = "FLUTTER_NOTIFICATION_CLICK",
+    required this.englishTitle,
+    required this.arabicTitle,
+    required this.englishBody,
+    required this.arabicBody,
   });
 
   Map<String, dynamic> toMap() {
     return {
-      "message": {
-        "token": fcmToken,
-        "topic": topic,
-        // "notification": notification.toMap(),
-        // "android": {
-        //   "notification": {
-        //     "notification_priority": "PRIORITY_MAX",
-        //     "sound": "default",
-        //   },
-        // },
-        "apns": {
-          "payload": {
-            "aps": {
-              "content_available": true,
-              "alert": notification.toMap(),
-              "sound": "default",
-            },
-          },
-        },
-        "data": data.toMap(),
-      },
+      "click_action": clickAction,
+      "Arabic_Title": arabicTitle,
+      "English_Title": englishTitle,
+      "Arabic_Body": arabicBody,
+      "English_Body": englishBody,
+      "Attendance_Request_Id": attendanceRequestId,
     };
+  }
+
+  // from map
+
+  factory NotificationPayload.fromMap(Map<String, dynamic> map) {
+    return NotificationPayload(
+      clickAction: map["click_action"] ?? "FLUTTER_NOTIFICATION_CLICK",
+      englishTitle: map["English_Title"],
+      arabicTitle: map["Arabic_Title"],
+      englishBody: map["English_Body"],
+      arabicBody: map["Arabic_Body"],
+      attendanceRequestId: map["Attendance_Request_Id"],
+    );
   }
 }

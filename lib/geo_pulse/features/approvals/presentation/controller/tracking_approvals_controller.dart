@@ -66,13 +66,13 @@ class TrackingApprovalsController extends GetxController {
     approvalRequests[index].reasonOfRejection =
         rejectionController.text.toLowerCase();
     // Update the request in the database
-    updateApprovals(approvalRequests[index]).then((_) {
+    updateApprovals(approvalRequests[index]).then((_) async {
       RequestTypeModel requestTypes = Get.find<RequestTypeController>()
           .requestTypeModels
           .firstWhere((element) =>
               element.id == approvalRequests[index].requestType.id);
 
-      PushNotificationService.sendNotification(
+      await PushNotificationService.sendNotification(
         topic: approvalRequests[index].requestedUserId,
         title: "${requestTypes.englishName} request",
         type: NotificationTypes.request.getName,

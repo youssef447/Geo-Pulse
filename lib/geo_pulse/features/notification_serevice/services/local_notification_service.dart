@@ -6,13 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:geo_pulse/geo_pulse/core/theme/app_colors.dart';
 import 'package:get/get.dart';
-import 'package:firebase_core/firebase_core.dart';
-import '../models/notification_data.dart';
+import '../models/notification_payload.dart';
 
-/* final StreamController<String?> selectNotificationStream =
-    StreamController<String?>.broadcast(); */
-
-NotificationData? notificationData;
+NotificationPayload? notificationData;
 
 class ReceivedNotification {
   ReceivedNotification({
@@ -40,15 +36,15 @@ void notificationTapBackground(NotificationResponse notificationResponse) {
 
 @pragma('vm:entry-point')
 Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  await Firebase.initializeApp();
-  LocalNotificationService.showNotification(message);
+  /*  await Firebase.initializeApp();
+  LocalNotificationService.showNotification(message); */
 }
 
 abstract class LocalNotificationService {
   static FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();
 
-  /// ✨Initialize the local notification plugin.⭐
+  /// Initialize the local notification plugin.
   /// Called once when the app starts to initialize the local notification
   /// plugin. This sets up the plugin to work on both Android and iOS and
   /// sets up the callbacks for when the user taps on a notification.
@@ -108,10 +104,10 @@ abstract class LocalNotificationService {
 
     await flutterLocalNotificationsPlugin.show(
       Random().nextInt(9999),
-      Get.deviceLocale!.languageCode == "ar"
+      Get.locale!.toString().contains('ar')
           ? message.data['Arabic_Title']
           : message.data['English_Title'],
-      Get.deviceLocale!.languageCode == "ar"
+      Get.locale!.toString().contains('ar')
           ? message.data['Arabic_Body']
           : message.data['English_Body'],
       platformChannelSpecifics,

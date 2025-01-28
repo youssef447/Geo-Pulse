@@ -8,7 +8,6 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:geo_pulse/geo_pulse/features/notification_serevice/services/push_notification_service.dart';
 import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:toastification/toastification.dart';
@@ -44,9 +43,6 @@ void main() async {
 
   if (!Platform.isWindows && !Platform.isLinux && !Platform.isMacOS) {
     await LocalNotificationService.initialize();
-
-    await PushNotificationService.initNotifications();
-    FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
       LocalNotificationService.showNotification(message);
     });
