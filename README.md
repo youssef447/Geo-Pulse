@@ -5,8 +5,8 @@ Responsive ( Mobile - Tablet - Windows )
 
 ## Demo
 
+![image](https://github.com/user-attachments/assets/036e710a-ecfe-40f5-8924-f02122810e82)
 
-![mockuper](https://github.com/user-attachments/assets/54362702-bdc3-4c6c-8230-6c2eb57816d9)
 
 ![Instagram App Screens Mockup](https://github.com/user-attachments/assets/c6c1b9df-5a63-4286-918b-ac5e0f5f7587)
 
