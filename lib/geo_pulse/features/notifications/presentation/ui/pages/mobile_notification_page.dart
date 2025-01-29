@@ -44,7 +44,9 @@ class MobileNotificationPage extends GetView<AppNotificationController> {
               ),
               verticalSpace(20),
               Expanded(
-                child: ListView.builder(
+                child: ListView.separated(
+                  separatorBuilder: (_, __) => verticalSpace(12),
+                  itemCount: controller.allNotifications.length,
                   itemBuilder: (context, index) => NotificationCard(
                     model: controller.allNotifications[index],
                   ),

@@ -25,6 +25,7 @@ class TabletNotificationPage extends GetView<AppNotificationController> {
       appBar: CustomAppBar(title: 'Notifications'.tr),
       body: SafeArea(
         child: ListView.builder(
+          itemCount: controller.allNotifications.length,
           itemBuilder: (context, index) => NotificationCard(
             model: controller.allNotifications[index],
           ),

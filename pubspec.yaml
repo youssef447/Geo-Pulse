@@ -105,7 +105,14 @@ dependencies:
   google_maps_utils: ^2.0.0+1
   googleapis_auth: ^1.6.0
   dio: ^5.7.0
+  flutter_launcher_icons: ^0.14.3
 
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  image_path: "assets/images/geo.png" 
+  ios: true
+  remove_alpha_ios: true
 dev_dependencies:
   flutter_test:
     sdk: flutter

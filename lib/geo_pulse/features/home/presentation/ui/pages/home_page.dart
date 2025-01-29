@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:geo_pulse/geo_pulse/core/routes/app_routes.dart';
 import 'package:geo_pulse/geo_pulse/features/notifications/presentation/controller/notification_controller.dart';
 import 'package:get/get.dart';
 import 'package:geo_pulse/geo_pulse/core/constants/enums.dart';

@@ -20,6 +20,7 @@ class Languages extends Translations {
           'Attachments:': 'Attachments:',
           'Reasons of Rejection': 'Reasons of Rejection',
           'Text Here': 'Text Here',
+          'Request': 'Request',
           'Submit': 'Submit',
           'Status:': 'Status:',
           'Attachments Required': 'Attachments Required',
@@ -159,7 +160,7 @@ class Languages extends Translations {
           'All Day': 'All Day',
           'Request Description': 'Request Description',
           'You Successful Send': 'You Successful Send',
-
+          'Notifications': 'Notifications',
           'Start Time': 'Start Time',
           'End Time': 'End Time',
           'Take a break': 'Take a break',
@@ -554,6 +555,8 @@ class Languages extends Translations {
           'Click': 'انقر',
           'Yes': 'نعم',
           'No': 'لا',
+          'Request': 'طلب',
+          'Notifications': 'الاشعارات',
 
           'Choose Time': 'اختر الوقت',
           'Your current location': 'موقعك الحالي',

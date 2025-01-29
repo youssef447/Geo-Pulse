@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -28,6 +30,7 @@ import '../../../../dashboard/hr_dashboard/presentation/ui/pages/hr_dashboard_ta
 import '../../../../dashboard/my_dashboard/presentation/ui/page/dashboard_tab.dart';
 import '../../../../notification_serevice/services/local_notification_service.dart';
 import '../../../../notification_serevice/services/push_notification_service.dart';
+import '../../../../notifications/presentation/controller/notification_controller.dart';
 import '../../../../users/logic/add_employee_controller.dart';
 import '../../../../location/presentation/ui/pages/mobile/mobile_location_tab.dart';
 import '../../../../location/presentation/ui/pages/tablet/tablet_location_tab.dart';
@@ -182,8 +185,12 @@ class TrackingHomeController extends GetxController
   void onInit() async {
     super.onInit();
     await Get.find<UserController>().getNewEmployee('nlcylrxGqh3I7DqljB4r');
-    await PushNotificationService.initNotifications();
+    if (Platform.isAndroid || Platform.isIOS) {
+      await PushNotificationService.initNotifications();
+    }
     FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
+    await Get.find<AppNotificationController>().fetchNotifications();
+
     await Get.find<CheckInController>().loadState();
 
     Get.find<CheckInController>().currentLocationAddress.addListener(() {

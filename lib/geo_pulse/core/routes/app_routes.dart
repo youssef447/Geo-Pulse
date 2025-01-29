@@ -4,6 +4,7 @@ abstract class Routes {
   // Home
 
   static const trackingHome = '/home';
+  static const notifications = '/home/notifications';
 
   // Attendance
   static const attendanceTabletPage = '/attendanceTabletPage';

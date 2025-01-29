@@ -13,20 +13,28 @@ class HomeAppbar extends StatelessWidget {
       actionWidget: Row(
         children: [
           GetBuilder<AppNotificationController>(
-              id: 'notification_icon',
+              id: 'notification_badge',
               builder: (controller) {
-                return SizedBox(
-                  width: 30.w,
-                  child: Badge.count(
-                    count: controller.unseenCount,
-                    offset: Offset.zero,
-                    backgroundColor: AppColors.primary,
-                    textColor: AppColors.icon,
-                    textStyle: AppTextStyles.font10RegularMonserrat,
-                    isLabelVisible:
-                        Get.find<AppNotificationController>().unseenCount != 0,
-                    child: SvgPicture.asset(
-                      AppAssets.bell,
+                return GestureDetector(
+                  onTap: () {
+                    context.navigateTo(
+                      Routes.notifications,
+                    );
+                  },
+                  child: SizedBox(
+                    width: 30.w,
+                    child: Badge.count(
+                      count: controller.unseenCount,
+                      offset: Offset.zero,
+                      backgroundColor: AppColors.primary,
+                      textColor: AppColors.icon,
+                      textStyle: AppTextStyles.font10RegularMonserrat,
+                      isLabelVisible:
+                          Get.find<AppNotificationController>().unseenCount !=
+                              0,
+                      child: SvgPicture.asset(
+                        AppAssets.bell,
+                      ),
                     ),
                   ),
                 );

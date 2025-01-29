@@ -16,14 +16,15 @@ class AppNotificationController extends GetxController {
   /// Fetch all notifications for the currently logged in employee and store them
 
   Future<void> fetchNotifications() async {
-    isLoading = true;
+    //isLoading = true;
     final result = await notificationRepo.fetchNotifications();
 
-    isLoading = false;
+    // isLoading = false;
     result.fold((e) {
       error = e.message;
     }, (r) {
       allNotifications = r;
+      getUnseenNotificationsCount();
     });
   }
 
@@ -34,11 +35,14 @@ class AppNotificationController extends GetxController {
   /// Mark all unseen notifications for the currently logged in employee as seen
   /// This is typically called when the user opens the notifications screen.
   Future<void> updateSeenNotifications() async {
+    unseenCount = 0;
     final result = await notificationRepo.updateSeenNotifications();
 
     isLoading = false;
     result.fold((e) {
       error = e.message;
-    }, (r) {});
+    }, (r) {
+      update(['badge']);
+    });
   }
 }

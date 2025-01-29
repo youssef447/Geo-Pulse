@@ -11,6 +11,8 @@ import '../../features/location/presentation/ui/pages/tablet/tablet_data_locatio
 import '../../features/location/presentation/ui/pages/tablet/tablet_location_details.dart';
 import '../../features/location/presentation/ui/pages/common/edit_location_google_map.dart';
 import '../../features/location/presentation/ui/pages/common/location_google_map.dart';
+import '../../features/notifications/presentation/ui/pages/mobile_notification_page.dart';
+import '../../features/notifications/presentation/ui/pages/tablet_notification_page.dart';
 import '../../features/request_type/presentation/ui/pages/mobile/mobile_request_type_details_page.dart';
 import '../../features/request_type/presentation/ui/pages/mobile/mobile_request_type_page.dart';
 import '../../features/request_type/presentation/ui/pages/tablet/tablet_request_type_details_page.dart';
@@ -85,6 +87,14 @@ abstract class RouteGenerator {
           ResponsiveHelper(
             mobileWidget: MobileRequestTypeDetailsPage(),
             tabletWidget: TabletRequestTypeDetailsPage(),
+          ),
+          PageTransitionType.fade,
+        );
+      case Routes.notifications:
+        return _buildPageRoute(
+          ResponsiveHelper(
+            mobileWidget: MobileNotificationPage(),
+            tabletWidget: TabletNotificationPage(),
           ),
           PageTransitionType.fade,
         );
