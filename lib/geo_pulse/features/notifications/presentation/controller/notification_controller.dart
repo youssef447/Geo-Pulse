@@ -1,4 +1,4 @@
-import 'package:geo_pulse/geo_pulse/features/notifications/data/domain/i_notification_repo.dart';
+import 'package:geo_pulse/geo_pulse/features/notifications/domain/i_notification_repo.dart';
 
 import 'package:get/get.dart';
 

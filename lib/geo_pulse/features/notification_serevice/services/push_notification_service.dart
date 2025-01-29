@@ -76,7 +76,6 @@ abstract class PushNotificationService {
         .post(
       urlEndPoint,
       data: NotificationBody(
-        // topic: '/topics/${_formatTopic(topic)}',
         topic: _formatTopic(topic),
         data: NotificationPayload(
           arabicTitle: arabicTitle,
@@ -147,7 +146,7 @@ abstract class PushNotificationService {
             .post(
           urlEndPoint,
           data: NotificationBody(
-            fcmToken: '/topics/${_formatTopic(element)}',
+            topic: _formatTopic(element),
             data: NotificationPayload(
               arabicTitle: arabicTitle,
               arabicBody: arabicBody,

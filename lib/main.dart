@@ -49,7 +49,7 @@ void main() async {
   }
   _checkPermission();
   // Run the app
-  runApp(const TrackingModule());
+  runApp(const GeoPulse());
 }
 
 Future<void> _checkPermission() async {
@@ -65,8 +65,8 @@ Future<void> _checkPermission() async {
   }
 }
 
-class TrackingModule extends StatelessWidget {
-  const TrackingModule({
+class GeoPulse extends StatelessWidget {
+  const GeoPulse({
     super.key,
   });
 

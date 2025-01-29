@@ -1,3 +1,4 @@
+import 'package:geo_pulse/geo_pulse/features/notifications/data/data_source/notifications_data_source.dart';
 import 'package:geo_pulse/geo_pulse/features/notifications/data/repo/notifications_repo_imp.dart';
 import 'package:get/get.dart';
 import 'package:geo_pulse/geo_pulse/features/home/data/data_source/checkIn_remote_data_source.dart';
@@ -101,9 +102,16 @@ configurationDependencies() {
             ),
           ),
       fenix: true);
-  Get.lazyPut(() => GeofencingController(), fenix: true);
   Get.lazyPut(
-      () => AppNotificationController(notificationRepo: NotificationsRepoImp()),
+    () => GeofencingController(),
+    fenix: true,
+  );
+  Get.lazyPut(
+      () => AppNotificationController(
+            notificationRepo: NotificationsRepoImp(
+              dataSource: NotificationsDataSource(),
+            ),
+          ),
       fenix: true);
   Get.lazyPut(() => EditGeofencingController(), fenix: true);
 }
