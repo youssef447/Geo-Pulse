@@ -89,9 +89,9 @@ abstract class LocalNotificationService {
       presentBadge: true,
       presentSound: true,
       sound: "default",
-      attachments: [
+      /*   attachments: [
         DarwinNotificationAttachment('your_icon.png'),
-      ],
+      ], */
     );
 
     final NotificationDetails notificationDetails = NotificationDetails(
