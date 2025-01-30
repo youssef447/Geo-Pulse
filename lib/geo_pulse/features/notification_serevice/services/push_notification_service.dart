@@ -80,6 +80,7 @@ abstract class PushNotificationService {
         data: NotificationPayload(
           arabicTitle: arabicTitle,
           arabicBody: arabicBody,
+          type: type,
           englishTitle: title.capitalize!,
           englishBody: body.capitalize!,
           attendanceRequestId: attendanceRequestId,
@@ -149,6 +150,7 @@ abstract class PushNotificationService {
             topic: _formatTopic(element),
             data: NotificationPayload(
               arabicTitle: arabicTitle,
+              type: type,
               arabicBody: arabicBody,
               englishTitle: title.capitalize!,
               englishBody: body.capitalize!,

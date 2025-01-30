@@ -2,6 +2,7 @@ class NotificationPayload {
   final String arabicTitle, arabicBody, englishTitle, englishBody;
   final String? attendanceRequestId;
   final String clickAction;
+  final String type;
 
   NotificationPayload({
     this.attendanceRequestId,
@@ -10,6 +11,7 @@ class NotificationPayload {
     required this.arabicTitle,
     required this.englishBody,
     required this.arabicBody,
+    required this.type,
   });
 
   Map<String, dynamic> toMap() {
@@ -19,6 +21,7 @@ class NotificationPayload {
       "English_Title": englishTitle,
       "Arabic_Body": arabicBody,
       "English_Body": englishBody,
+      "type": type,
       "Attendance_Request_Id": attendanceRequestId,
     };
   }
@@ -32,6 +35,7 @@ class NotificationPayload {
       arabicTitle: map["Arabic_Title"],
       englishBody: map["English_Body"],
       arabicBody: map["Arabic_Body"],
+      type: map["type"],
       attendanceRequestId: map["Attendance_Request_Id"],
     );
   }

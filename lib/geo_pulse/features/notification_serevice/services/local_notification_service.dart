@@ -10,7 +10,16 @@ import 'package:get/get.dart';
 
 @pragma('vm:entry-point')
 void notificationTapBackground(NotificationResponse notificationResponse) {
-  if (notificationResponse.input?.isNotEmpty ?? false) {
+  if (notificationResponse.payload?.isNotEmpty ?? false) {
+    final Map data = jsonDecode(notificationResponse.payload!);
+    if (data['type'] == 'Request') {
+      navKey.currentState!.pushNamed(Routes.notifications);
+    }
+  }
+}
+
+void notificationTap(NotificationResponse notificationResponse) {
+  if (notificationResponse.payload?.isNotEmpty ?? false) {
     final Map data = jsonDecode(notificationResponse.payload!);
     if (data['type'] == 'Request') {
       navKey.currentState!.pushNamed(Routes.notifications);
@@ -34,7 +43,7 @@ abstract class LocalNotificationService {
   /// sets up the callbacks for when the user taps on a notification.
   static Future<void> initialize() async {
     const AndroidInitializationSettings initializationSettingsAndroid =
-        AndroidInitializationSettings('');
+        AndroidInitializationSettings('report');
 
     final DarwinInitializationSettings initializationSettingsIOS =
         DarwinInitializationSettings(
@@ -51,7 +60,7 @@ abstract class LocalNotificationService {
 
     await flutterLocalNotificationsPlugin.initialize(
       initializationSettings,
-      onDidReceiveNotificationResponse: notificationTapBackground,
+      onDidReceiveNotificationResponse: notificationTap,
       onDidReceiveBackgroundNotificationResponse: notificationTapBackground,
     );
   }
@@ -59,15 +68,20 @@ abstract class LocalNotificationService {
   static Future<void> showNotification(RemoteMessage message) async {
     AndroidNotificationDetails androidPlatformChannelSpecifics =
         AndroidNotificationDetails(
-            message.messageId ?? Random().nextInt(99999).toString(),
-            message.messageId ?? Random().nextInt(99999).toString(),
-            importance: Importance.max,
-            //  sound: UriAndroidNotificationSound('notification'),
-            priority: Priority.high,
-            colorized: true,
-            color: AppColors.primary,
-            showWhen: true,
-            icon: null);
+      message.messageId ?? Random().nextInt(99999).toString(),
+      message.messageId ?? Random().nextInt(99999).toString(),
+      importance: Importance.max,
+      //  sound: UriAndroidNotificationSound('notification'),
+      priority: Priority.high,
+      colorized: true,
+      color: AppColors.primary,
+      largeIcon: DrawableResourceAndroidBitmap('geo'),
+      showWhen: true, category: AndroidNotificationCategory.status,
+      /* styleInformation: BigPictureStyleInformation(
+        DrawableResourceAndroidBitmap(_bitmap),
+      ), */
+      //  icon: message.data['Type'] == 'Request' ? 'report' : '',
+    );
 
     const DarwinNotificationDetails darwinNotificationDetails =
         DarwinNotificationDetails(
@@ -75,6 +89,9 @@ abstract class LocalNotificationService {
       presentBadge: true,
       presentSound: true,
       sound: "default",
+      attachments: [
+        DarwinNotificationAttachment('your_icon.png'),
+      ],
     );
 
     final NotificationDetails notificationDetails = NotificationDetails(

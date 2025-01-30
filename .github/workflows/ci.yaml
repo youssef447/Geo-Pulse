@@ -1,0 +1,74 @@
+name: Geo_Pulse CI/CD
+on:
+  pull_request:
+    branches:
+      - master
+  push:
+    branches:
+      - master
+     
+jobs:
+  build:
+    name: Build & Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      -  name: Setup Java
+         uses: actions/setup-java@v4
+         with:
+          distribution: 'zulu'
+          java-version: '17'
+          cache: gradle
+      - name: Set Up Flutter    
+        uses: subosito/flutter-action@v2
+        with:
+          channel: "stable"
+          flutter-version: 3.24.4
+      - name: Set up Dart SDK
+        uses: dart-lang/setup-dart@v1
+        with:
+          sdk: 3.5.4          
+
+     
+      #- name: Test flutter app 
+       # run: flutter test
+        # build apk
+      - name: Build APK
+        run: flutter build apk --release
+
+      - name: Build appBundle
+        run: flutter build appbundle
+      
+      - name: Build windows
+        run: flutter build windows
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: Releases
+          path: |
+            build/app/outputs/flutter-apk/app-release.apk
+            build/app/outputs/bundle/release/app-release.aab
+            build\windows\runner\Release\geo_pulse.exe
+              
+      - name: Create Release
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "build/app/outputs/flutter-apk/app-release.apk,build/app/outputs/bundle/release/app-release.aab,  build\windows\runner\Release\geo_pulse.exe"
+          tag: v1.0.0
+          token: ${{secrets.github_token}}
+
+      #- name: Setup Git
+      #  run: |
+      #    git config user.name "CI Bot"
+      #    git config user.email "ci-bot@example.com"
+
+      #- name: Fetch All Branches
+      #  run: git fetch --all
+
+      #- name: Merge Branch
+      #  run: |
+      #    git checkout main
+      #    git merge feature-branch
+      #    git push origin main      

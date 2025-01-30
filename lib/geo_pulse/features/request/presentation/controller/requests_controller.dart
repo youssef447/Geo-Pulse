@@ -208,7 +208,7 @@ class TrackingRequestsController extends GetxController {
         String empEnglishName =
             Get.find<UserController>().getEmployeeNameEnglishArabic(true);
         PushNotificationService.sendNotification(
-          topic: 'request',
+          topic: 'requests',
           type: NotificationTypes.request.getName,
           title: "new ${selectedReqType?.englishName} request",
           arabicTitle: "طلب ${selectedReqType?.arabicName} جديد",
