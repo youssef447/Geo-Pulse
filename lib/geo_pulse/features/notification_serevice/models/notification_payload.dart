@@ -26,8 +26,6 @@ class NotificationPayload {
     };
   }
 
-  // from map
-
   factory NotificationPayload.fromMap(Map<String, dynamic> map) {
     return NotificationPayload(
       clickAction: map["click_action"] ?? "FLUTTER_NOTIFICATION_CLICK",
