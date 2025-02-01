@@ -43,7 +43,7 @@ abstract class LocalNotificationService {
   /// sets up the callbacks for when the user taps on a notification.
   static Future<void> initialize() async {
     const AndroidInitializationSettings initializationSettingsAndroid =
-        AndroidInitializationSettings('report');
+        AndroidInitializationSettings('@mipmap/launcher_icon');
 
     final DarwinInitializationSettings initializationSettingsIOS =
         DarwinInitializationSettings(
@@ -75,7 +75,7 @@ abstract class LocalNotificationService {
       priority: Priority.high,
       colorized: true,
       color: AppColors.primary,
-      largeIcon: DrawableResourceAndroidBitmap('geo'),
+      largeIcon: DrawableResourceAndroidBitmap('report'),
       showWhen: true, category: AndroidNotificationCategory.status,
       /* styleInformation: BigPictureStyleInformation(
         DrawableResourceAndroidBitmap(_bitmap),
