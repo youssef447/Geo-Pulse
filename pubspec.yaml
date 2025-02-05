@@ -106,6 +106,7 @@ dependencies:
   googleapis_auth: ^1.6.0
   dio: ^5.7.0
   flutter_launcher_icons: ^0.14.3
+  internet_connection_checker: ^3.0.1
 
 
 flutter_launcher_icons:

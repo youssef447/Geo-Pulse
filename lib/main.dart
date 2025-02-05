@@ -8,6 +8,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:geo_pulse/geo_pulse/core/services/connection_service.dart';
 import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:toastification/toastification.dart';
@@ -19,10 +20,10 @@ import 'package:geo_pulse/geo_pulse/core/routes/app_routes.dart';
 import 'package:geo_pulse/geo_pulse/core/routes/get_pages.dart';
 import 'package:geo_pulse/geo_pulse/core/theme/app_theme.dart';
 //import 'package:geo_pulse/geo_pulse/features/notification_serevice/notification_controller.dart';
-import 'package:geo_pulse/geo_pulse/features/notification_serevice/services/local_notification_service.dart';
 import 'package:window_manager/window_manager.dart';
 
 import 'firebase_options.dart';
+import 'geo_pulse/features/notification_service/services/local_notification_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -100,6 +101,16 @@ class GeoPulse extends StatelessWidget {
                 ),
               ],
             ),
+
+            builder: (context, child) {
+              return StreamBuilder(
+                stream: ConnectionService.initConnectivity(),
+                builder: (context, snapshot) {
+                  return ConnectionService.handeConnection(
+                      child: child!, status: snapshot.data);
+                },
+              );
+            },
 
             // Theme
             themeMode:

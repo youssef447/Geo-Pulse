@@ -28,8 +28,8 @@ import '../../../../attendance/presentation/ui/page/mobile/attendance_mobile_pag
 import '../../../../attendance/presentation/ui/page/tablet/attendance_tablet_page.dart';
 import '../../../../dashboard/hr_dashboard/presentation/ui/pages/hr_dashboard_tab.dart';
 import '../../../../dashboard/my_dashboard/presentation/ui/page/dashboard_tab.dart';
-import '../../../../notification_serevice/services/local_notification_service.dart';
-import '../../../../notification_serevice/services/push_notification_service.dart';
+import '../../../../notification_service/services/local_notification_service.dart';
+import '../../../../notification_service/services/push_notification_service.dart';
 import '../../../../notifications/presentation/controller/notification_controller.dart';
 import '../../../../users/logic/add_employee_controller.dart';
 import '../../../../location/presentation/ui/pages/mobile/mobile_location_tab.dart';
