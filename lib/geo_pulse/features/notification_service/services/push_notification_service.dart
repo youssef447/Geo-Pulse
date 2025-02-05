@@ -14,7 +14,7 @@ import 'package:flutter/material.dart';
 import 'dart:math';
 
 import '../../notifications/data/models/notification_model.dart';
-import '../secret.dart';
+import '../../../../secret.dart';
 
 abstract class PushNotificationService {
   static final FirebaseFirestore _db = FirebaseFirestore.instance;
