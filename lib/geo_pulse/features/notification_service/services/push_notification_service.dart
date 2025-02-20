@@ -3,7 +3,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:geo_pulse/geo_pulse/core/constants/enums.dart';
 import 'package:geo_pulse/geo_pulse/features/users/logic/add_employee_controller.dart';
 import 'package:get/get.dart';
-import 'package:get/utils.dart';
+
 import '../models/notification_content.dart';
 import '../models/notification_payload.dart';
 import '../models/notification_body.dart';
@@ -14,7 +14,7 @@ import 'package:flutter/material.dart';
 import 'dart:math';
 
 import '../../notifications/data/models/notification_model.dart';
-import '../../../../secret.dart';
+import 'secret.dart';
 
 abstract class PushNotificationService {
   static final FirebaseFirestore _db = FirebaseFirestore.instance;

@@ -45,4 +45,4 @@ app.*.map.json
 #secret
 android/app/google-services.json
 firebase.json
-lib/secret.dart
+lib/geo_pulse/features/notification_service/services/secret.dart
