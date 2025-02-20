@@ -332,41 +332,4 @@ abstract class AppTheme {
   /// If both colors are light (luminance > 0.5), black is returned.
   /// If both colors are dark (luminance <= 0.5), white is returned.
   /// If one color is light and the other is dark, a contrasting color is returned (currently white, but can be changed).
-
-  static Color contrastColor() {
-    final double primaryLuminance = AppColors.primary.computeLuminance();
-    final double secondaryPrimaryLuminance =
-        AppColors.secondaryPrimary.computeLuminance();
-
-    // Check if both colors are light or dark
-    if (primaryLuminance > 0.5 && secondaryPrimaryLuminance > 0.5) {
-      return AppColors.black; // Return black for light colors
-    } else if (primaryLuminance <= 0.5 && secondaryPrimaryLuminance <= 0.5) {
-      return AppColors.white; // Return white for dark colors
-    } else {
-      // If one color is light and the other is dark, return a contrasting color
-      return AppColors.white; // Change this to the desired contrasting color
-    }
-  }
-
-  /// Returns a contrasting grey color based on the luminance of the primary and secondary primary colors.
-  ///
-  /// If both colors are light (luminance > 0.5), secondary black is returned.
-  /// If both colors are dark (luminance <= 0.5), white is returned.
-  /// If one color is light and the other is dark, a contrasting grey color is returned.
-  static Color contrastGreyColor() {
-    final double primaryLuminance = AppColors.primary.computeLuminance();
-    final double secondaryPrimaryLuminance =
-        AppColors.secondaryPrimary.computeLuminance();
-
-    // Check if both colors are light or dark
-    if (primaryLuminance > 0.5 && secondaryPrimaryLuminance > 0.5) {
-      return AppColors.secondaryBlack; // Return black for light colors
-    } else if (primaryLuminance <= 0.5 && secondaryPrimaryLuminance <= 0.5) {
-      return AppColors.white; // Return white for dark colors
-    } else {
-      // If one color is light and the other is dark, return a contrasting color
-      return AppColors.white; // Change this to the desired contrasting color
-    }
-  }
 }

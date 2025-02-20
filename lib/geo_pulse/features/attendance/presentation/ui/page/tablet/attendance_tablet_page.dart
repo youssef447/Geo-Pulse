@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../../../core/constants/enums.dart';
@@ -44,7 +42,6 @@ class AttendanceTabletPage extends StatelessWidget {
               return const NoDataGif();
             }
             return DefaultDataTable(
-              noScroll: Platform.isWindows || Platform.isMacOS,
               columns: AttendanceColumnsName.attendanceColumnsName
                   .map(
                     (element) => DataColumn(

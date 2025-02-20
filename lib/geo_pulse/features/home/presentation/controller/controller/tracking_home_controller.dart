@@ -4,6 +4,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:geo_pulse/geo_pulse/features/users/models/user_model.dart';
+import 'package:permission_handler/permission_handler.dart';
 import '../../../../../core/extensions/extensions.dart';
 
 import '../../../../../core/routes/app_routes.dart';
@@ -185,11 +186,25 @@ class TrackingHomeController extends GetxController
   void onInit() async {
     super.onInit();
     await Get.find<UserController>().getNewEmployee('nlcylrxGqh3I7DqljB4r');
-    if (Platform.isAndroid || Platform.isIOS) {
+    if ((Platform.isAndroid || Platform.isIOS) &&
+        await Permission.notification.isGranted) {
+      await LocalNotificationService.initialize();
       await PushNotificationService.initNotifications();
+      //await FirebaseMessaging.instance.setAutoInitEnabled(false);
+      FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+        LocalNotificationService.showNotification(message);
+      });
+
+      FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
+      //  FirebaseMessaging.instance.getInitialMessage().then(firebaseMessagingBackgroundHandler);
     }
-    FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
     await Get.find<AppNotificationController>().fetchNotifications();
+    // Check if app was launched via notification tap
+    if (Platform.isAndroid || Platform.isIOS) {
+      await Get.find<UserController>().getNewEmployee('nlcylrxGqh3I7DqljB4r');
+
+      await LocalNotificationService.handleNotificationLaunch();
+    }
 
     await Get.find<CheckInController>().loadState();
 

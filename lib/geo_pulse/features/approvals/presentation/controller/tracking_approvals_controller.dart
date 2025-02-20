@@ -114,7 +114,7 @@ class TrackingApprovalsController extends GetxController {
         arabicBody:
             "تمت الموافقة علي طلب: ${requestTypes.arabicName} الخاص بك من قبل قسم الموارد البشرية.",
         attendanceRequestId: approvalRequests[index].id,
-      );
+      ).then((_) {});
       update([AppConstanst.approvals]);
     });
   }

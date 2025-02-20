@@ -3,11 +3,11 @@
 import 'dart:io';
 
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 //import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:geo_pulse/geo_pulse/core/routes/app_routes.dart';
 import 'package:geo_pulse/geo_pulse/core/services/connection_service.dart';
 import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -16,14 +16,13 @@ import 'package:geo_pulse/geo_pulse/core/extensions/extensions.dart';
 import 'package:geo_pulse/geo_pulse/core/constants/languages.dart';
 import 'package:geo_pulse/geo_pulse/core/di/injection.dart';
 import 'package:geo_pulse/geo_pulse/core/helpers/getx_cache_helper.dart';
-import 'package:geo_pulse/geo_pulse/core/routes/app_routes.dart';
+
 import 'package:geo_pulse/geo_pulse/core/routes/get_pages.dart';
 import 'package:geo_pulse/geo_pulse/core/theme/app_theme.dart';
 //import 'package:geo_pulse/geo_pulse/features/notification_serevice/notification_controller.dart';
 import 'package:window_manager/window_manager.dart';
 
 import 'firebase_options.dart';
-import 'geo_pulse/features/notification_service/services/local_notification_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -42,27 +41,27 @@ void main() async {
 
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
-  if (!Platform.isWindows && !Platform.isLinux && !Platform.isMacOS) {
-    await LocalNotificationService.initialize();
-    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-      LocalNotificationService.showNotification(message);
-    });
-  }
-  _checkPermission();
+  await _checkPermission();
+
   // Run the app
-  runApp(const GeoPulse());
+  runApp(GeoPulse());
 }
 
 Future<void> _checkPermission() async {
+  await Permission.notification.request();
   var status = await Permission.location.status;
 
   if (status.isGranted) {
-  } else if (status.isDenied) {
-    // Request permission
-    if (await Permission.location.request().isGranted) {
-    } else {}
-  } else if (status.isPermanentlyDenied) {
-    openAppSettings();
+    return;
+  }
+  if (status.isPermanentlyDenied) {
+    await openAppSettings();
+  } else {
+    var result = await Permission.location.request();
+
+    if (result.isDenied) {
+      // Handle denied case (optional)
+    }
   }
 }
 
@@ -107,7 +106,9 @@ class GeoPulse extends StatelessWidget {
                 stream: ConnectionService.initConnectivity(),
                 builder: (context, snapshot) {
                   return ConnectionService.handeConnection(
-                      child: child!, status: snapshot.data);
+                    child: child!,
+                    status: snapshot.data,
+                  );
                 },
               );
             },

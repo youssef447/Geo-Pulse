@@ -29,8 +29,8 @@ abstract class AppColors {
   static Color get text => currentThemeColors['text']!;
   static Color get inputColor => currentThemeColors['inputColor']!;
   static Color get button => currentThemeColors['button']!;
-  static Color get textButton => AppTheme.contrastColor();
-  static Color get icon => AppTheme.contrastColor();
+  static Color get textButton => _contrastColor();
+  static Color get icon => _contrastColor();
   static Color get card => currentThemeColors['card']!;
   static Color get field => currentThemeColors['field']!;
   static Color get appBar => currentThemeColors['appBar']!;
@@ -69,4 +69,41 @@ abstract class AppColors {
   static Color get orange => currentThemeColors['orange']!;
   static Color get yellow => currentThemeColors['yellow']!;
   static Color get warming => currentThemeColors['warming']!;
+
+  static Color _contrastColor() {
+    final double primaryLuminance = AppColors.primary.computeLuminance();
+    final double secondaryPrimaryLuminance =
+        AppColors.secondaryPrimary.computeLuminance();
+
+    // Check if both colors are light or dark
+    if (primaryLuminance > 0.5 && secondaryPrimaryLuminance > 0.5) {
+      return AppColors.black; // Return black for light colors
+    } else if (primaryLuminance <= 0.5 && secondaryPrimaryLuminance <= 0.5) {
+      return AppColors.white; // Return white for dark colors
+    } else {
+      // If one color is light and the other is dark, return a contrasting color
+      return AppColors.white; // Change this to the desired contrasting color
+    }
+  }
+
+  /// Returns a contrasting grey color based on the luminance of the primary and secondary primary colors.
+  ///
+  /// If both colors are light (luminance > 0.5), secondary black is returned.
+  /// If both colors are dark (luminance <= 0.5), white is returned.
+  /// If one color is light and the other is dark, a contrasting grey color is returned.
+  static Color _contrastGreyColor() {
+    final double primaryLuminance = AppColors.primary.computeLuminance();
+    final double secondaryPrimaryLuminance =
+        AppColors.secondaryPrimary.computeLuminance();
+
+    // Check if both colors are light or dark
+    if (primaryLuminance > 0.5 && secondaryPrimaryLuminance > 0.5) {
+      return AppColors.secondaryBlack; // Return black for light colors
+    } else if (primaryLuminance <= 0.5 && secondaryPrimaryLuminance <= 0.5) {
+      return AppColors.white; // Return white for dark colors
+    } else {
+      // If one color is light and the other is dark, return a contrasting color
+      return AppColors.white; // Change this to the desired contrasting color
+    }
+  }
 }

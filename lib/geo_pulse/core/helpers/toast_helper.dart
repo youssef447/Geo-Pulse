@@ -7,7 +7,6 @@ import 'package:toastification/toastification.dart';
 
 import '../theme/app_colors.dart';
 import '../theme/app_text_styles.dart';
-import '../theme/app_theme.dart';
 
 ///Helper Toast that helps configure what to use based on platform
 abstract class FlutterToastHelper {
@@ -35,7 +34,7 @@ abstract class FlutterToastHelper {
       Fluttertoast.showToast(
         msg: msg.tr,
         backgroundColor: AppColors.primary,
-        textColor: AppTheme.contrastColor(),
+        textColor: AppColors.icon,
       );
     }
   }

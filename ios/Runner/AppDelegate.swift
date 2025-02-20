@@ -7,13 +7,16 @@ import UIKit
     _ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
   ) -> Bool {
+    GeneratedPluginRegistrant.register(with: self)
+    GMSServices.provideAPIKey("AIzaSyCuTilAfnGfkZtIx0T3qf-eOmWZ_N2LpoY")
+
+  // receive notifications when it’s open and active (foreground).
     if #available(iOS 10.0, *) {
     UNUserNotificationCenter.current().delegate = self as? UNUserNotificationCenterDelegate
     }
-    GMSServices.provideAPIKey("AIzaSyCuTilAfnGfkZtIx0T3qf-eOmWZ_N2LpoY")
 
-    GeneratedPluginRegistrant.register(with: self)
-
+  //ensures flutter_local_notifications can process the notification when app is launched
+  //from background or terminated : user tapped
     FlutterLocalNotificationsPlugin.setPluginRegistrantCallback { (registry) in
       GeneratedPluginRegistrant.register(with: registry)
     }

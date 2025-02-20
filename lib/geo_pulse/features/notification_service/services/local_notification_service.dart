@@ -30,6 +30,7 @@ void notificationTap(NotificationResponse notificationResponse) {
 @pragma('vm:entry-point')
 Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   // await Firebase.initializeApp();
+  // if(message.data['id']=='request')
   LocalNotificationService.showNotification(message);
 }
 
@@ -37,27 +38,74 @@ abstract class LocalNotificationService {
   static FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();
 
-  /// Initialize the local notification plugin.
-  /// Called once when the app starts to initialize the local notification
-  /// plugin. This sets up the plugin to work on both Android and iOS and
-  /// sets up the callbacks for when the user taps on a notification.
+  static Future<void> handleNotificationLaunch() async {
+    final notificationTapDetails =
+        await flutterLocalNotificationsPlugin.getNotificationAppLaunchDetails();
+    if (notificationTapDetails?.didNotificationLaunchApp ?? false) {
+      notificationTap(notificationTapDetails!.notificationResponse!);
+    }
+  }
+
   static Future<void> initialize() async {
+    /*   flutterLocalNotificationsPlugin
+        .resolvePlatformSpecificImplementation<
+            AndroidFlutterLocalNotificationsPlugin>()!
+        .requestExactAlarmsPermission(); */
+
+    const AndroidNotificationChannel channel = AndroidNotificationChannel(
+      'requests', // Channel ID
+      'request_approval_channel', // Channel Title
+      importance: Importance.max, showBadge: false,
+      // sound:  UriAndroidNotificationSound('notification'),
+    );
+
+    await flutterLocalNotificationsPlugin
+        .resolvePlatformSpecificImplementation<
+            AndroidFlutterLocalNotificationsPlugin>()
+        ?.createNotificationChannel(channel);
+
+    const DarwinNotificationCategory iOSCategory = DarwinNotificationCategory(
+      'requests',
+    );
     const AndroidInitializationSettings initializationSettingsAndroid =
         AndroidInitializationSettings('@mipmap/launcher_icon');
 
     final DarwinInitializationSettings initializationSettingsIOS =
         DarwinInitializationSettings(
-      requestAlertPermission: true,
-      requestBadgePermission: true,
-      requestSoundPermission: true,
-    );
+            requestAlertPermission: true,
+            requestBadgePermission: false,
+            requestSoundPermission: true,
+            notificationCategories: [iOSCategory]
+            /* notificationCategories: [
+        DarwinNotificationCategory(
+          'demoCategory',
+          actions: <DarwinNotificationAction>[
+            DarwinNotificationAction.plain('id_1', 'Action 1'),
+            DarwinNotificationAction.plain(
+              'id_2',
+              'Action 2',
+              options: <DarwinNotificationActionOption>{
+                DarwinNotificationActionOption.destructive,
+              },
+            ),
+            DarwinNotificationAction.plain(
+              'id_3',
+              'Action 3',
+              options: <DarwinNotificationActionOption>{
+                DarwinNotificationActionOption.foreground,
+              },
+            ),
+          ],
+         
+        ),
+      ], */
+            );
 
     final InitializationSettings initializationSettings =
         InitializationSettings(
       android: initializationSettingsAndroid,
       iOS: initializationSettingsIOS,
     );
-
     await flutterLocalNotificationsPlugin.initialize(
       initializationSettings,
       onDidReceiveNotificationResponse: notificationTap,
@@ -68,18 +116,31 @@ abstract class LocalNotificationService {
   static Future<void> showNotification(RemoteMessage message) async {
     AndroidNotificationDetails androidPlatformChannelSpecifics =
         AndroidNotificationDetails(
-      message.messageId ?? Random().nextInt(99999).toString(),
-      message.messageId ?? Random().nextInt(99999).toString(),
-      importance: Importance.max,
-      //  sound: UriAndroidNotificationSound('notification'),
-      priority: Priority.high,
+      //should be message.data['id'] , message.data['name']
+      'requests', // Channel ID
+      'request_approval_channel', // Channel Title
+
+      // sound: UriAndroidNotificationSound('notification'),
+
+      priority: Priority.max,
       colorized: true,
-      color: AppColors.primary,
+      color: AppColors.background,
       largeIcon: DrawableResourceAndroidBitmap('report'),
-      showWhen: true, category: AndroidNotificationCategory.status,
+      showWhen: true,
+
+      /*     actions: [
+          AndroidNotificationAction(
+            'id1',
+            'title1',
+            showsUserInterface: true,
+            cancelNotification: true,
+            contextual: true,
+          ),
+        ] */
       /* styleInformation: BigPictureStyleInformation(
         DrawableResourceAndroidBitmap(_bitmap),
       ), */
+
       //  icon: message.data['Type'] == 'Request' ? 'report' : '',
     );
 
@@ -89,6 +150,8 @@ abstract class LocalNotificationService {
       presentBadge: true,
       presentSound: true,
       sound: "default",
+      categoryIdentifier: "requests",
+
       /*   attachments: [
         DarwinNotificationAttachment('your_icon.png'),
       ], */
@@ -100,10 +163,10 @@ abstract class LocalNotificationService {
     );
     await flutterLocalNotificationsPlugin.show(
       Random().nextInt(9999),
-      Get.locale!.toString().contains('ar')
+      Get.locale?.toString().contains('ar') ?? false
           ? message.data['Arabic_Title']
           : message.data['English_Title'],
-      Get.locale!.toString().contains('ar')
+      Get.locale?.toString().contains('ar') ?? false
           ? message.data['Arabic_Body']
           : message.data['English_Body'],
       notificationDetails,

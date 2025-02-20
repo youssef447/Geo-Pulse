@@ -17,7 +17,7 @@ abstract class ConnectionService {
       {required Widget child, required InternetConnectionStatus? status}) {
     if (status == InternetConnectionStatus.disconnected ||
         status == InternetConnectionStatus.slow) {
-      const NoInternetScreen();
+      return const NoInternetScreen();
     }
     return child;
   }

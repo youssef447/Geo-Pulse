@@ -47,7 +47,7 @@ class TimePickerField extends StatelessWidget {
                   timePickerTheme: TimePickerThemeData(
                     backgroundColor: AppColors.background,
                     dayPeriodTextColor: AppColors.text,
-                    hourMinuteTextColor: AppTheme.contrastColor(),
+                    hourMinuteTextColor: AppColors.icon,
                     dayPeriodBorderSide: BorderSide(
                       color: AppColors.secondaryPrimary,
                     ),
@@ -57,7 +57,7 @@ class TimePickerField extends StatelessWidget {
                     primary: AppColors.secondaryPrimary,
                     secondary: AppColors.secondaryPrimary,
                     surface: AppColors.primary,
-                    onSurface: AppTheme.contrastColor(),
+                    onSurface: AppColors.icon,
                     onError: AppColors.darkRed,
                     onPrimary: AppColors.white,
                     onSecondary: Colors.black,

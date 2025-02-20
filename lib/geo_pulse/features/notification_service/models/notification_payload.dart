@@ -23,6 +23,9 @@ class NotificationPayload {
       "English_Body": englishBody,
       "type": type,
       "Attendance_Request_Id": attendanceRequestId,
+      //channel
+      // "id": id
+      //"name":name
     };
   }
 

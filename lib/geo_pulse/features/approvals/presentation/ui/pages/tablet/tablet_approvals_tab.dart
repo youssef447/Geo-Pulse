@@ -56,7 +56,6 @@ class TabletApprovalsTab extends StatelessWidget {
             return controller.approvalRequests.isEmpty
                 ? const NoDataGif()
                 : DefaultDataTable(
-                    noScroll: true,
                     columns: controller.tableColumns
                         .map(
                           (element) => DataColumn(

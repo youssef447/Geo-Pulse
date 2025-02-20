@@ -5,13 +5,13 @@ class NotificationBody {
   final String? fcmToken;
   final String? topic;
   final NotificationContent notification;
-  final NotificationPayload data;
+  final NotificationPayload payload;
 
   NotificationBody({
     this.fcmToken,
     this.topic,
     required this.notification,
-    required this.data,
+    required this.payload,
   });
 
   Map<String, dynamic> toMap() {
@@ -20,8 +20,8 @@ class NotificationBody {
         if (fcmToken != null) "token": fcmToken,
         if (topic != null) "topic": topic,
         //for all platforms
-        "notification": notification.toMap(),
-        "android": {
+        //  "notification": notification.toMap(),
+        /*     "android": {
           // "priority":"HIGH", //NORMAL
           "notification": {
             "notification_priority": "PRIORITY_HIGH",
@@ -32,12 +32,14 @@ class NotificationBody {
           "payload": {
             "aps": {
               //"alert": notification.toMap(),
+              'content-available': 1,
               "sound": "default",
             },
           },
           //"fcm_options": {'image': image},
-        },
-        "data": data.toMap(),
+        }, */
+        "data": payload
+            .toMap() /* .addAll({'notification': notification.toMap()}) */,
       },
     };
   }

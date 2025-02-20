@@ -43,13 +43,11 @@ abstract class PushNotificationService {
   /// for the app to receive notifications and retrieves a Firebase
   /// messaging token. The token is used to authenticate with the FCM API.
   static Future<void> initNotifications() async {
-    final bool granted = await requestPermission();
-    if (granted) {
-//      String? firebaseMessagingToken = await _fcm.getToken();
-      await subscribeToTopic(Get.find<UserController>().employee!.email);
-      if (Get.find<UserController>().employee!.position == UserPosition.hr) {
-        await subscribeToTopic('requests');
-      }
+//   String? firebaseMessagingToken = await _fcm.getToken();
+
+    await subscribeToTopic(Get.find<UserController>().employee!.email);
+    if (Get.find<UserController>().employee!.position == UserPosition.hr) {
+      await subscribeToTopic('requests');
     }
   }
 
@@ -77,14 +75,13 @@ abstract class PushNotificationService {
       urlEndPoint,
       data: NotificationBody(
         topic: _formatTopic(topic),
-        data: NotificationPayload(
+        payload: NotificationPayload(
           arabicTitle: arabicTitle,
           arabicBody: arabicBody,
           type: type,
           englishTitle: title.capitalize!,
           englishBody: body.capitalize!,
           attendanceRequestId: attendanceRequestId,
-          clickAction: "FLUTTER_NOTIFICATION_CLICK",
         ),
         notification: NotificationContent(
           title: title.capitalize!,
@@ -148,7 +145,7 @@ abstract class PushNotificationService {
           urlEndPoint,
           data: NotificationBody(
             topic: _formatTopic(element),
-            data: NotificationPayload(
+            payload: NotificationPayload(
               arabicTitle: arabicTitle,
               type: type,
               arabicBody: arabicBody,

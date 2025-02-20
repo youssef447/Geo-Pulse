@@ -14,22 +14,29 @@ class AppNotificationController extends GetxController {
   String? error;
 
   /// Fetch all notifications for the currently logged in employee and store them
+  @override
+  onInit() {
+    super.onInit();
+    fetchNotifications();
+  }
 
   Future<void> fetchNotifications() async {
-    //isLoading = true;
+    isLoading = true;
     final result = await notificationRepo.fetchNotifications();
 
-    // isLoading = false;
+    isLoading = false;
     result.fold((e) {
       error = e.message;
     }, (r) {
       allNotifications = r;
+      update(['notification_page']);
       getUnseenNotificationsCount();
     });
   }
 
   void getUnseenNotificationsCount() {
     unseenCount = allNotifications.where((e) => e.seen == false).length;
+    update(['notification_badge']);
   }
 
   /// Mark all unseen notifications for the currently logged in employee as seen
@@ -42,7 +49,7 @@ class AppNotificationController extends GetxController {
     result.fold((e) {
       error = e.message;
     }, (r) {
-      update(['badge']);
+      update(['notification_badge']);
     });
   }
 }

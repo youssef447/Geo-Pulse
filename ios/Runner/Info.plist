@@ -51,6 +51,7 @@
 	<string>Always and when in use!</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Can I have location always?</string>
+	
 	<key>NSLocationUsageDescription</key>
 	<string>Older devices need location.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>

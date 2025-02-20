@@ -10,52 +10,57 @@ import 'package:get/get.dart';
 import '../../../../../core/widgets/appbar/mobile_custom_appbar.dart';
 import '../../controller/notification_controller.dart';
 
-class MobileNotificationPage extends GetView<AppNotificationController> {
+class MobileNotificationPage extends StatelessWidget {
   const MobileNotificationPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    if (controller.error != null) {
-      return Scaffold(
-        backgroundColor: AppColors.background,
-        body: Center(
-          child: Text(
-            controller.error!,
-            style: AppTextStyles.font18SecondaryBlackCairoMedium,
-          ),
-        ),
-      );
-    }
-    if (controller.allNotifications.isEmpty) {
-      return Scaffold(
-        backgroundColor: AppColors.background,
-        body: NoDataGif(),
-      );
-    }
-    return Scaffold(
-      backgroundColor: AppColors.background,
-      body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
-          child: Column(
-            children: [
-              CustomMobileAppbar(
-                title: 'Notifications'.tr,
+    return GetBuilder<AppNotificationController>(
+      id: 'notification_page',
+      builder: (controller) {
+        if (controller.error != null) {
+          return Scaffold(
+            backgroundColor: AppColors.background,
+            body: Center(
+              child: Text(
+                controller.error!,
+                style: AppTextStyles.font18SecondaryBlackCairoMedium,
               ),
-              verticalSpace(20),
-              Expanded(
-                child: ListView.separated(
-                  separatorBuilder: (_, __) => verticalSpace(12),
-                  itemCount: controller.allNotifications.length,
-                  itemBuilder: (context, index) => NotificationCard(
-                    model: controller.allNotifications[index],
+            ),
+          );
+        }
+        if (controller.allNotifications.isEmpty) {
+          return Scaffold(
+            backgroundColor: AppColors.background,
+            body: NoDataGif(),
+          );
+        }
+        return Scaffold(
+          backgroundColor: AppColors.background,
+          body: SafeArea(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
+              child: Column(
+                children: [
+                  CustomMobileAppbar(
+                    title: 'Notifications'.tr,
                   ),
-                ),
+                  verticalSpace(20),
+                  Expanded(
+                    child: ListView.separated(
+                      separatorBuilder: (_, __) => verticalSpace(12),
+                      itemCount: controller.allNotifications.length,
+                      itemBuilder: (context, index) => NotificationCard(
+                        model: controller.allNotifications[index],
+                      ),
+                    ),
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }
