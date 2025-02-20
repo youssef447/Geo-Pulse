@@ -201,8 +201,6 @@ class TrackingHomeController extends GetxController
     await Get.find<AppNotificationController>().fetchNotifications();
     // Check if app was launched via notification tap
     if (Platform.isAndroid || Platform.isIOS) {
-      await Get.find<UserController>().getNewEmployee('nlcylrxGqh3I7DqljB4r');
-
       await LocalNotificationService.handleNotificationLaunch();
     }
 

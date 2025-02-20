@@ -11,16 +11,19 @@ class NoInternetScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.background,
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          LottieBuilder.asset('assets/lottie/offline.json'),
-          verticalSpace(20),
-          Text(
-            'No internet connection',
-            style: AppTextStyles.font18SecondaryBlackCairoMedium,
-          ),
-        ],
+      body: SafeArea(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            LottieBuilder.asset('assets/lottie/offline.json'),
+            verticalSpace(20),
+            Text(
+              'No internet connection',
+              style: AppTextStyles.font18SecondaryBlackCairoMedium,
+            ),
+          ],
+        ),
       ),
     );
   }
