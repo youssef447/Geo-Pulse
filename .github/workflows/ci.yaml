@@ -76,8 +76,4 @@ jobs:
       #- name: Fetch All Branches
       #  run: git fetch --all
 
-      - name: Merge Branch
-        run: |
-          git checkout master
-          git merge main
-          git push origin master      
+            
