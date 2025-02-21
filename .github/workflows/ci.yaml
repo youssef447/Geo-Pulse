@@ -30,7 +30,7 @@ jobs:
         with:
           sdk: 3.5.4          
 
-      # Recreate the firebase_options.json file
+      # Recreate the firebase.json file
       - name: Create firebase.json
         run:  echo "${{ secrets.FIREBASE_JSON }}" | base64 -d > firebase.json
       # Recreate the firebase_options.json file
