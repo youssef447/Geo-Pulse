@@ -30,7 +30,20 @@ jobs:
         with:
           sdk: 3.5.4          
 
-     
+      # Recreate the firebase_options.json file
+      - name: Create firebase.json
+        run: echo "${{ secrets.FIREBASE_JSON }}" > lib/firebase.json
+      # Recreate the firebase_options.json file
+      - name: Create firebase_options.dart
+        run: echo "${{ secrets.FIREBASE_OPTIONS_DART }}" > lib/firebase_options.dart
+
+      # Recreate the google-services.json file for Android
+      - name: Create google-services.json
+        run: echo "${{ secrets.GOOGLE_SERVICES_JSON }}" > android/app/google-services.json
+
+      # If you have an additional Dart config file
+      - name: Create secret.dart
+        run: echo "${{ secrets.SECRET_DART }}" > lib/geo_pulse/features/notification_service/services/secret.dart
       #- name: Test flutter app 
        # run: flutter test
         # build apk
