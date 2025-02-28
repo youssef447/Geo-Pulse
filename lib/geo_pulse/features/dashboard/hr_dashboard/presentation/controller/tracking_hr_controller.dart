@@ -578,67 +578,6 @@ class TrackingHRController extends GetxController {
     });
   }
 
-/*   /// Gets the request types for the HR approval requests.
-  ///
-  /// This method fetches the request types from the FireStore database and
-  /// populates the [requestTypesChartData] list with the count of each request
-  /// type. The list is sorted in descending order by the count of each request
-  /// type.
-  void getHRRequestTypes() {
-    /// Create an empty list to store the chart data.
-
-    requestTypesChartData = [];
-
-    /// Get the request types and their counts from the FireStore database.
-    var mapEntries = requestTypesCount.entries.toList();
-    mapEntries.sort((a, b) => b.value.compareTo(a.value));
-    Map<String, int> sortedMap = Map.fromEntries(mapEntries);
-    List<String> label = sortedMap.keys.toList();
-    List<int> values = sortedMap.values.toList();
-
-    /// Create a list of colors to be used for the chart.
-    List<Color> colors = [
-      AppColors.primary,
-      AppColors.grey,
-      AppColors.black,
-      AppColors.secondaryPrimary,
-    ];
-
-    /// If the list of request types is empty, add an empty chart data item.
-    if (Get.find<RequestTypeController>().requestTypeModels.isEmpty) {
-      requestTypesChartData.add(ChartData(
-        xAxisLabel: AppConstanst.transaction,
-        xAxisLabelArabic: AppConstanst.transactionArabic,
-        yAxisLabel: 0,
-        chartItemColor: colors[0],
-      ));
-    } else if (label.isEmpty) {
-      requestTypesChartData.add(ChartData(
-        xAxisLabel:
-            Get.find<RequestTypeController>().requestTypeModels[0].englishName,
-        xAxisLabelArabic:
-            Get.find<RequestTypeController>().requestTypeModels[0].arabicName,
-        yAxisLabel: 0,
-        chartItemColor: colors[0],
-      ));
-    } else {
-      /// Iterate over the request types and add a chart data item for each
-      /// request type. The list is limited to the first 4 request types.
-      for (int i = 0; i < (label.length < 4 ? label.length : 4); i++) {
-        requestTypesChartData.add(
-          ChartData(
-            xAxisLabel: label[i].capitalize!,
-            xAxisLabelArabic: label[i] == AppConstanst.transaction
-                ? AppConstanst.transactionArabic
-                : getRequestTypeinArabic(label[i]),
-            yAxisLabel: values[i],
-            chartItemColor: colors[i],
-          ),
-        );
-      }
-    }
-  } */
-
   String getRequestTypeinArabic(String requestTypeName) {
     RequestTypeModel requestTypeModel = Get.find<RequestTypeController>()
         .requestTypeModels
@@ -646,6 +585,14 @@ class TrackingHRController extends GetxController {
             element.englishName.toLowerCase() == requestTypeName.toLowerCase());
 
     return requestTypeModel.arabicName;
+  }
+
+  int getTotalRequestTypesCount() {
+    int res = 0;
+    for (var i in requestTypesCount.values) {
+      res += i;
+    }
+    return res;
   }
 
   /// Populates `requestTypesChartData` with the count of each request type.

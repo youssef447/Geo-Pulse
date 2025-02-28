@@ -40,7 +40,8 @@ class HRDashboardTabletLayout extends StatelessWidget {
                       DashboardCircularChart(
                         title: 'Request Types'.tr,
                         height: 260.h,
-                        allRequestsCount: controller.totalRequestCount,
+                        allRequestsCount:
+                            controller.getTotalRequestTypesCount(),
                         data: controller.requestTypesChartData,
                       ),
                       verticalSpace(12),

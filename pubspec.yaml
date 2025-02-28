@@ -107,7 +107,7 @@ dependencies:
   dio: ^5.7.0
   flutter_launcher_icons: ^0.14.3
   internet_connection_checker: ^3.0.1
-
+  showcaseview: ^4.0.1
 
 flutter_launcher_icons:
   android: "launcher_icon"

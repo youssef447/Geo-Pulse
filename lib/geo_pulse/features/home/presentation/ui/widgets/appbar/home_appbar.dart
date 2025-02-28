@@ -1,6 +1,6 @@
 part of '../../pages/home_page.dart';
 
-class HomeAppbar extends StatelessWidget {
+class HomeAppbar extends GetView<TrackingHomeController> {
   final bool hideLeading;
   const HomeAppbar({required this.hideLeading, super.key});
 
@@ -12,31 +12,37 @@ class HomeAppbar extends StatelessWidget {
       centerTitle: false,
       actionWidget: Row(
         children: [
-          GetBuilder<AppNotificationController>(
-              id: 'notification_badge',
-              builder: (controller) {
-                return GestureDetector(
-                  onTap: () {
-                    context.navigateTo(
-                      Routes.notifications,
-                    );
-                  },
-                  child: Badge.count(
-                    count: controller.unseenCount,
-                    //offset: Offset.zero,
-                    backgroundColor: AppColors.primary,
-                    textColor: AppColors.icon,
-                    textStyle: AppTextStyles.font10RegularMonserrat,
-                    isLabelVisible:
-                        Get.find<AppNotificationController>().unseenCount != 0,
-                    child: SvgPicture.asset(
-                      AppAssets.bell,
-                      width: 24.w,
-                      height: 24.h,
+          DefaultShowcase(
+            showcasekey: controller.showcaseNotification,
+            type: ShowcaseTypes.first,
+            description: 'Check notifications here',
+            child: GetBuilder<AppNotificationController>(
+                id: 'notification_badge',
+                builder: (controller) {
+                  return GestureDetector(
+                    onTap: () {
+                      context.navigateTo(
+                        Routes.notifications,
+                      );
+                    },
+                    child: Badge.count(
+                      count: controller.unseenCount,
+                      //offset: Offset.zero,
+                      backgroundColor: AppColors.primary,
+                      textColor: AppColors.icon,
+                      textStyle: AppTextStyles.font10RegularMonserrat,
+                      isLabelVisible:
+                          Get.find<AppNotificationController>().unseenCount !=
+                              0,
+                      child: SvgPicture.asset(
+                        AppAssets.bell,
+                        width: 24.w,
+                        height: 24.h,
+                      ),
                     ),
-                  ),
-                );
-              }),
+                  );
+                }),
+          ),
           horizontalSpace(16),
           GetBuilder<TrackingHomeController>(builder: (controller) {
             return AnimatedToggleSwitch<bool>.size(
@@ -67,28 +73,33 @@ class HomeAppbar extends StatelessWidget {
             );
           }),
           horizontalSpace(6),
-          AnimatedSwitcher(
-            duration: const Duration(milliseconds: 650),
-            transitionBuilder: (child, anim) => RotationTransition(
-              turns: child.key == ValueKey('dark')
-                  ? Tween<double>(begin: 0.85, end: 1).animate(anim)
-                  : Tween<double>(begin: 0.75, end: 1).animate(anim),
-              child: ScaleTransition(
-                scale: anim,
-                child: child,
+          DefaultShowcase(
+            showcasekey: controller.showcaseTheme,
+            type: ShowcaseTypes.middle,
+            description: '  toggle Light/Dark theme',
+            child: AnimatedSwitcher(
+              duration: const Duration(milliseconds: 650),
+              transitionBuilder: (child, anim) => RotationTransition(
+                turns: child.key == ValueKey('dark')
+                    ? Tween<double>(begin: 0.85, end: 1).animate(anim)
+                    : Tween<double>(begin: 0.75, end: 1).animate(anim),
+                child: ScaleTransition(
+                  scale: anim,
+                  child: child,
+                ),
               ),
+              child: Icon(
+                  key: AppTheme.isDark ?? false
+                      ? ValueKey('dark')
+                      : ValueKey('light'),
+                  AppTheme.isDark ?? false
+                      ? Icons.nightlight_round_sharp
+                      : Icons.wb_sunny,
+                  size: 30.sp,
+                  color: AppTheme.isDark ?? false
+                      ? AppColors.icon
+                      : AppColors.yellow),
             ),
-            child: Icon(
-                key: AppTheme.isDark ?? false
-                    ? ValueKey('dark')
-                    : ValueKey('light'),
-                AppTheme.isDark ?? false
-                    ? Icons.nightlight_round_sharp
-                    : Icons.wb_sunny,
-                size: 30.sp,
-                color: AppTheme.isDark ?? false
-                    ? AppColors.icon
-                    : AppColors.yellow),
           ),
           DefaultSwitchButton(
             value: AppTheme.isDark ?? false,
@@ -96,12 +107,21 @@ class HomeAppbar extends StatelessWidget {
               AppTheme.toggleTheme();
             },
           ),
-          /*   DefaultSwitchButton(
+          DefaultShowcase(
+            showcasekey: controller.showcaseAnimation,
+            description: 'Enable/Disable Animations',
+            type: ShowcaseTypes.last,
+            child: Icon(
+              Icons.animation,
+              size: 30.sp,
+            ),
+          ),
+          DefaultSwitchButton(
             value: controller.isAnimatable,
             onChanged: (bool value) async {
               controller.toggleAnimation();
             },
-          ), */
+          ),
         ],
       ),
     );

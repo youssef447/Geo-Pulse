@@ -5,12 +5,15 @@ import 'dart:io';
 import 'package:firebase_core/firebase_core.dart';
 //import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:geo_pulse/geo_pulse/core/routes/app_routes.dart';
 import 'package:geo_pulse/geo_pulse/core/services/connection_service.dart';
+
 import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:showcaseview/showcaseview.dart';
 import 'package:toastification/toastification.dart';
 import 'package:geo_pulse/geo_pulse/core/extensions/extensions.dart';
 import 'package:geo_pulse/geo_pulse/core/constants/languages.dart';
@@ -89,16 +92,28 @@ class GeoPulse extends StatelessWidget {
           child: GetMaterialApp(
             debugShowCheckedModeBanner: false,
             title: 'Geo Pulse',
-            home: Column(
-              children: [
-                Expanded(
-                  child: Navigator(
-                    key: navKey,
-                    onGenerateRoute: RouteGenerator.generateRoute,
-                    initialRoute: Routes.trackingHome,
-                  ),
+            home: PopScope(
+              canPop: false,
+              onPopInvokedWithResult: (didPop, result) {
+                if (navKey.currentState?.canPop() ?? false) {
+                  navKey.currentState?.pop();
+                } else {
+                  SystemNavigator.pop();
+                }
+              },
+              child: ShowCaseWidget(
+                builder: (context) => Column(
+                  children: [
+                    Expanded(
+                      child: Navigator(
+                        key: navKey,
+                        onGenerateRoute: RouteGenerator.generateRoute,
+                        initialRoute: Routes.trackingHome,
+                      ),
+                    ),
+                  ],
                 ),
-              ],
+              ),
             ),
 
             builder: (context, child) {

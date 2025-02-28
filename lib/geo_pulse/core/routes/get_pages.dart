@@ -149,11 +149,12 @@ abstract class RouteGenerator {
         );
 
       default:
-        return MaterialPageRoute(
+        return null;
+      /* return MaterialPageRoute(
           builder: (_) => Scaffold(
             body: Center(child: Text('Unknown route: $routeName')),
           ),
-        );
+        ); */
     }
   }
 

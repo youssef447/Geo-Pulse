@@ -2,6 +2,7 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:geo_pulse/geo_pulse/core/extensions/extensions.dart';
 import 'package:get/get.dart';
 
 import '../../constants/app_assets.dart';
@@ -58,7 +59,7 @@ class AppDropdown extends StatelessWidget {
             ),
             child: Padding(
               padding: EdgeInsets.symmetric(
-                horizontal: 8.w,
+                horizontal: 6.w,
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -69,6 +70,8 @@ class AppDropdown extends StatelessWidget {
                     SvgPicture.asset(
                       AppAssets.down,
                       color: AppColors.inverseBase,
+                      width: context.isTablett ? 24.w : 12.w,
+                      height: context.isTablett ? 24.h : 12.h,
                     )
                 ],
               ),
@@ -98,9 +101,13 @@ class AppDropdown extends StatelessWidget {
   Text _buildDropdownText() {
     return Text(
       textButton ?? hintText ?? 'Choose here'.tr,
-      style: value != null
-          ? AppTextStyles.font14BlackCairoRegular.copyWith(color: textColor)
-          : AppTextStyles.font14SecondaryBlackCairoRegular,
+      style: Get.context!.isTablett
+          ? value != null
+              ? AppTextStyles.font14BlackCairoRegular.copyWith(color: textColor)
+              : AppTextStyles.font14SecondaryBlackCairoRegular
+          : value != null
+              ? AppTextStyles.font12BlackCairoRegular.copyWith(color: textColor)
+              : AppTextStyles.font12SecondaryBlackCairoRegular,
       overflow: TextOverflow.ellipsis,
     );
   }

@@ -37,10 +37,11 @@ class TrackingAttendanceController extends GetxController {
         .getAttendanceData(Get.find<UserController>().employee!.email);
     isGettingAttendances = false;
     response.fold((faliure) {
-      print(faliure.message);
+      print('ehh ${faliure.message}');
     }, (dataList) {
       attendanceDataModel = dataList;
       allAttendanceDataModel = dataList;
+
       update([AppConstanst.attendanceList, AppConstanst.attendanceTable]);
     });
   }
@@ -61,9 +62,7 @@ class TrackingAttendanceController extends GetxController {
 
     // Add the attendance record to Firestore
     final response = await attendenceRepo.addAttendance(model, employeeEmail);
-    response.fold((faliure) {
-      print(faliure.message);
-    }, (_) {
+    response.fold((faliure) {}, (_) {
       // Update local attendance data models
       attendanceDataModel.add(model);
       allAttendanceDataModel = attendanceDataModel;

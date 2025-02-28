@@ -654,11 +654,8 @@ class LocationController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    // _initializeLocationStream();
 
-    getAllLocations().then((_) {
-      print("vvvvv");
-    });
+    getAllLocations();
 
     locationNameEnglishController.addListener(() {
       update([AppConstanst.locationDialog]);

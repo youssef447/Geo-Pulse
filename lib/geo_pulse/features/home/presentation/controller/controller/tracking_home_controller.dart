@@ -2,9 +2,11 @@ import 'dart:io';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:geo_pulse/geo_pulse/core/helpers/getx_cache_helper.dart';
 import 'package:get/get.dart';
 import 'package:geo_pulse/geo_pulse/features/users/models/user_model.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:showcaseview/showcaseview.dart';
 import '../../../../../core/extensions/extensions.dart';
 
 import '../../../../../core/routes/app_routes.dart';
@@ -49,6 +51,10 @@ import '../../../data/models/status_item_model.dart';
 /// This class is the controller for the tracking home page.
 class TrackingHomeController extends GetxController
     with GetTickerProviderStateMixin {
+  final GlobalKey<State> showcaseTheme = GlobalKey<State>();
+  final GlobalKey<State> showcaseAnimation = GlobalKey<State>();
+  final GlobalKey<State> showcaseNotification = GlobalKey<State>();
+  final GlobalKey<State> scaffoldKey = GlobalKey<State>();
   UserModel? user;
   bool loading = true;
   late final TabController tabController;
@@ -226,6 +232,16 @@ class TrackingHomeController extends GetxController
     getRequestStatusItems();
     loading = false;
     update([AppConstanst.home]);
+
+    if (GetXCacheHelper.getData(key: 'launched') == null) {
+      WidgetsBinding.instance.addPostFrameCallback(
+        (_) {
+          ShowCaseWidget.of(navKey.currentContext!).startShowCase(
+              [showcaseNotification, showcaseTheme, showcaseAnimation]);
+          GetXCacheHelper.saveData(key: 'launched', value: true);
+        },
+      );
+    }
   }
 
   ///Set the tabs views according to the user type.

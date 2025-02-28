@@ -8,6 +8,7 @@ import 'package:geo_pulse/geo_pulse/features/notifications/presentation/controll
 import 'package:get/get.dart';
 import 'package:geo_pulse/geo_pulse/core/constants/enums.dart';
 import 'package:geo_pulse/geo_pulse/core/widgets/loading/circle_progress.dart';
+import 'package:showcaseview/showcaseview.dart';
 import '../../../../../core/extensions/extensions.dart';
 
 import '../../../../../core/constants/app_assets.dart';
@@ -38,6 +39,7 @@ import '../widgets/tabbar/home_mobile_tabbar.dart';
 import '../widgets/tabbar/home_tablet_tabbar.dart';
 part '../widgets/appbar/home_appbar.dart';
 part '../widgets/row_children.dart';
+part '../widgets/showcase/default_showcase.dart';
 
 /// Representation: This is the home page of the tracking module.
 class TrackingHomePage extends GetView<TrackingHomeController> {
@@ -64,6 +66,7 @@ class TrackingHomePage extends GetView<TrackingHomeController> {
       child: Scaffold(
         resizeToAvoidBottomInset: true,
         backgroundColor: AppColors.background,
+        key: controller.scaffoldKey,
         body: SafeArea(
           child: Padding(
             padding: EdgeInsets.symmetric(

@@ -589,31 +589,6 @@ class CheckInController extends GetxController
     checkOutTime = DateTime.now();
     isCheckOut.value = !isCheckOut.value;
 
-    // Record attendance data t
-    await Get.find<TrackingAttendanceController>().addAttendance(
-      AttendanceDataModel(
-        date: DateTime.now(),
-        status: (checkInTime.toDate().hour > eightThirtyAM.hour ||
-                (checkInTime.toDate().hour == eightThirtyAM.hour &&
-                    checkInTime.toDate().minute >= eightThirtyAM.minute))
-            ? AttendanceStatus.late
-            : AttendanceStatus.present,
-        oncomingTime: TimeOfDay(
-          hour: checkInTime.toDate().hour,
-          minute: checkInTime.toDate().minute,
-        ),
-        leavingTime: TimeOfDay(
-          hour: checkOutTime.hour,
-          minute: checkOutTime.minute,
-        ),
-        breakTime: tookBreak ? const Duration(minutes: 30) : Duration.zero,
-        totalTime: Duration(
-          seconds: currentDuration.value,
-        ),
-        attachments: [],
-      ),
-    );
-
     currentDuration.value = 0;
     isRunning.value = false;
     isPaused.value = false;
@@ -628,7 +603,31 @@ class CheckInController extends GetxController
             subTitle: 'Error in check out, please contact the support'),
         context: Get.context!,
       );
-    }, (_) {
+    }, (_) async {
+      // Record attendance data
+      await Get.find<TrackingAttendanceController>().addAttendance(
+        AttendanceDataModel(
+          date: DateTime.now(),
+          status: (checkInTime.toDate().hour > eightThirtyAM.hour ||
+                  (checkInTime.toDate().hour == eightThirtyAM.hour &&
+                      checkInTime.toDate().minute >= eightThirtyAM.minute))
+              ? AttendanceStatus.late
+              : AttendanceStatus.present,
+          oncomingTime: TimeOfDay(
+            hour: checkInTime.toDate().hour,
+            minute: checkInTime.toDate().minute,
+          ),
+          leavingTime: TimeOfDay(
+            hour: checkOutTime.hour,
+            minute: checkOutTime.minute,
+          ),
+          breakTime: tookBreak ? const Duration(minutes: 30) : Duration.zero,
+          totalTime: Duration(
+            seconds: currentDuration.value,
+          ),
+          attachments: [],
+        ),
+      );
       GetDialogHelper.generalDialog(
         child: DefaultDialog(
           lottieAsset: AppAssets.successful,
